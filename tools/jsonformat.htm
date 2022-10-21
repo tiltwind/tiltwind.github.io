@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="copyright" content="gelnyang@163.com">
+    <meta name="created" content="20171126">
+    <title>Json Format</title>
+    <style type="text/css">
+        <!--
+        body {
+            background: white;
+            color: black;
+        }
+
+        h1 {
+            font-family: Arial, sans-serif;
+            border-bottom: 2px solid;
+            margin-bottom: 0.33em;
+            padding-bottom: 0;
+        }
+
+        textarea, pre {
+            background: #EEF;
+            font-size: 12px;
+        }
+
+        #msg_container {
+            color: red;
+        }
+
+        -->
+    </style>
+    <script type="text/javascript">
+        function formatJson() {
+            let textarea = document.getElementById("json");
+            let text = textarea.value;
+            try {
+                let oldJson = JSON.parse(text);
+                let formatChar = '\t';
+                if (document.getElementById("typeblank").checked) {
+                    formatChar = '  ';
+                }
+                textarea.value = JSON.stringify(oldJson, null, formatChar);
+                message("");
+            } catch (e) {
+                let msg = e.toString()
+                let index = msg.indexOf("at position");
+                if (index > 0) {
+                    let start = parseInt(msg.substr(index + "at position".length))
+                    start -= 20
+                    if (start < 0) {
+                        start = 0
+                    }
+                    let errorContent = text.substr(start, 100);
+                    msg += "\n..." + errorContent + "...";
+                }
+                message(msg);
+            }
+        }
+
+        function message(msg) {
+
+            document.getElementById('msg_container').innerText = msg;
+        }
+    </script>
+</head>
+<body>
+<h1>Json Format</h1>
+<input id="typeblank" type="radio" name="type" value="blank" checked="checked">Blank Mode
+<input id="typetab" type="radio" name="type" value="tab">TAB Mode
+<br/>
+<pre id="msg_container">
+</pre>
+<textarea id="json" rows="50" style="width:99%;" onkeyup="formatJson()"></textarea>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="copyright" content="gelnyang@163.com">
+<meta name="created" content="20170920">
+<title>SQL Format</title>
+<style type="text/css">
+<!--
+body {background: white; color: black;}
+form {margin: 0;}
+h1 {font-family: Arial, sans-serif; line-height: 0.85em; border-bottom: 2px solid;
+  margin-bottom: 0.33em; padding-bottom: 0;}
+
+textarea,pre{background: #EEF;}
+
+#footer {border-top: 1px solid #000; color: #999; font: italic 75% sans-serif;}
+#footer p {margin: 0 0 1em 0;}
+#footer img {float: right; margin: 0 0 0.5em 2em;}
+-->
+</style>
+    <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+ <script type="text/javascript">
+function sql_format() {
+    $.ajax({
+        url: 'http://sqlformat.org/api/v1/format',
+        type: 'POST',
+        dataType: 'json',
+        crossDomain: true,
+        data: {sql: $('#sql').val(), reindent: 1},
+        success: onSuccess,
+    });
+}
+
+function sql_formatp() {
+    $.ajax({
+        url: 'http://sqlformat.org/api/v1/format',
+        dataType: 'jsonp',
+        crossDomain: true,
+        data: {sql: $('#sql').val(), reindent: 1},
+        success: onSuccess,
+    });
+}
+function onSuccess(data) { $('#result').text(data['result']); }
+</script>
+</head>
+<body>
+<h1>SQL Format</h1>
+<textarea id="sql" style="width:100%;" rows="20" >select * from foo</textarea><br />
+<button onclick="sql_format()">Format statement (JSON)</button>
+<button onclick="sql_formatp()">Format statement (JSONP)</button>
+<hr />
+<strong>The result:</strong><br />
+<pre id="result"></pre>
+</body></html>

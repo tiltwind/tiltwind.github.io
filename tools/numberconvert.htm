@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="copyright" content="gelnyang@163.com">
+<meta name="created" content="20171017">
+<title>Number Converter</title>
+<style type="text/css">
+<!--
+body {background: white; color: black;}
+h1 {font-family: Arial, sans-serif; line-height: 0.85em; border-bottom: 2px solid;
+  margin-bottom: 0.33em; padding-bottom: 0;}
+
+input {background: #EEF;font-size:28px;}
+input.label {background: #FFF; font-size:16px; border: 0px;}
+-->
+</style>
+<script type="text/javascript">
+var number;
+
+function dec() {
+	try{
+		var decValue = document.getElementById('dec').value;
+		number = parseInt(decValue.replace(/,/g,""));
+		convert("dec");
+		message("");
+	}catch(e){
+		message(e);
+	}
+}
+function hex() {
+	try{
+		var hexValue = document.getElementById('hex').value;
+		number = parseInt(hexValue.replace(/ /g,""), 16);
+		var fstr = formatStr(hexValue ,4 ," ");
+		if(fstr != hexValue) document.getElementById('hex').value = fstr;
+		convert("hex");
+		message("");
+	}catch(e){
+		message(e);
+	}
+}
+function bit() {
+	try{
+		var bitValue = document.getElementById('bit').value;
+		number = parseInt(bitValue.replace(/ /g,""), 2);
+		var fstr = formatStr(bitValue,8," ");
+		if(fstr != bitValue) document.getElementById('bit').value = fstr;
+		convert("bit");
+		message("");
+	}catch(e){
+		message(e);
+	}
+}
+
+function convert(from){
+    if(isNaN(number)){
+      return;
+    }
+    if(from != "dec") document.getElementById('dec').value = formatStr(""+number,3,",");
+    if(from != "hex") document.getElementById('hex').value = format(number.toString(16).toUpperCase(), 4, "0", "  ");
+    if(from != "bit") document.getElementById('bit').value = format(number.toString(2), 8, "0", "  ");
+
+    document.getElementById('codepoint_char').innerText = String.fromCodePoint(number);
+
+    showEncodeBytes("utf-8", "utf8_bytes");
+    showUTF16Bytes();
+}
+
+function showEncodeBytes(charset, target){
+    let char = String.fromCodePoint(number);
+
+    let uint8array = new TextEncoder(charset).encode(char);
+    
+    document.getElementById(target+'_length').innerText = uint8array.length;
+
+    let bytesInput = document.getElementById(target);
+    bytesInput.value = "";
+    for( var i = 0 ; i < uint8array.length; i++){
+        if (i > 0){
+            bytesInput.value += "  "
+        }
+        bytesInput.value += uint8array[i].toString(16).toUpperCase();
+    }
+}
+
+
+function showUTF16Bytes(){
+    let char = String.fromCodePoint(number);
+    document.getElementById('utf16_bytes_length').innerText = char.length * 2;
+
+    let bytesInput = document.getElementById('utf16_bytes');
+    bytesInput.value = "";
+    for( var i = 0 ; i < char.length; i++){
+        if (i > 0){
+            bytesInput.value += "  "
+        }
+        bytesInput.value += char.charCodeAt(i).toString(16).toUpperCase();
+    }
+}
+
+function format(str, groupLength, previousChar, groupSplitter){
+    var addLength = groupLength - str.length % groupLength;
+    if( groupLength == addLength) addLength = 0;
+    while( (addLength--) > 0){
+        str = previousChar + str;
+    }
+    var formatStr="";
+    for( var i = 0 ; i < str.length; i=i+groupLength){
+        if( i > 0){
+            formatStr = formatStr + groupSplitter;
+        }
+        formatStr = formatStr + str.substr(i , groupLength);
+    }
+    return formatStr;
+}
+
+
+function formatStr(s, groupLength, groupSplitter){
+    var str = s.trim().replace(/ /g,"").replace(/,/g,"").toUpperCase();
+    var formatStr = "";
+    for( var i=str.length; i >0 ; i= i - groupLength){
+        var len = groupLength;
+        var start = i - len;
+        if( start < 0 ) {
+            len = i;
+            start = 0;
+        }
+        formatStr =  str.substr(start , len) + formatStr;
+        if( i > groupLength){
+            formatStr =  groupSplitter + formatStr;
+        }
+    }
+    return formatStr;
+}
+
+function message(msg){
+	document.getElementById('msg_container').innerText=msg;
+}
+</script>
+</head>
+<body>
+<h1>Number Converter</h1>
+
+DEC:<input id="dec" size="100" oninput="dec()"/><br/>
+HEX:<input id="hex" size="100" oninput="hex()"/> <br/>
+&nbsp;&nbsp;BIT:<input id="bit" size="100" oninput="bit()"/><br/>
+
+<hr>
+unicode code point char: <label id="codepoint_char"></label><br/>
+UTF-8 bytes length: <label id="utf8_bytes_length"></label><br/>
+UTF-8 bytes: <input id="utf8_bytes" readonly="readonly" size="50" class="label" /><br/>
+UTF-16 bytes length: <label id="utf16_bytes_length"></label><br/>
+UTF-16 bytes: <input id="utf16_bytes" readonly="readonly" size="50" class="label"  /><br/>
+
+<div id="msg_container"><div>
+
+</body></html>
