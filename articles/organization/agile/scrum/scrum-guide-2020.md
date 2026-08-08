@@ -2,7 +2,7 @@
 markmeta_author: Ken Schwaber & Jeff Sutherland
 markmeta_date: 2020-11-10
 markmeta_title: 2020 Scrum 指南（简体中文）
-markmeta_categories: scrum
+markmeta_categories: agile
 markmeta_tags: scrum
 -->
 

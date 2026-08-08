@@ -8,7 +8,7 @@
   }
 
   function articleHref(path) {
-    return "articles/" + path;
+    return "articles/" + String(path).replace(/\.md$/i, "");
   }
 
   function renderArticleItem(article) {
@@ -45,32 +45,42 @@
     });
   }
 
-  function renderByYear(container) {
+  function categoryKey(article) {
+    var cats = article.categories;
+    if (Array.isArray(cats) && cats.length && cats[0]) {
+      return String(cats[0]);
+    }
+    return "其他";
+  }
+
+  function renderByCategory(container) {
     return loadArticles().then(function (articles) {
       var groups = {};
-      var years = [];
+      var keys = [];
 
       articles.forEach(function (article) {
-        var year = (article.date || "").slice(0, 4) || "未知";
-        if (!groups[year]) {
-          groups[year] = [];
-          years.push(year);
+        var key = categoryKey(article);
+        if (!groups[key]) {
+          groups[key] = [];
+          keys.push(key);
         }
-        groups[year].push(article);
+        groups[key].push(article);
       });
 
-      years.sort(function (a, b) {
-        return b.localeCompare(a);
+      keys.sort(function (a, b) {
+        if (a === "其他") return 1;
+        if (b === "其他") return -1;
+        return a.localeCompare(b, "zh");
       });
 
-      container.innerHTML = years
-        .map(function (year) {
+      container.innerHTML = keys
+        .map(function (key) {
           return (
             '<section class="year-group">' +
             '<h2 class="year-title">' +
-            escapeHtml(year) +
+            escapeHtml(key) +
             "</h2>" +
-            groups[year].map(renderArticleItem).join("") +
+            groups[key].map(renderArticleItem).join("") +
             "</section>"
           );
         })
@@ -81,6 +91,6 @@
   global.Articles = {
     load: loadArticles,
     renderLatest: renderLatest,
-    renderByYear: renderByYear,
+    renderByCategory: renderByCategory,
   };
 })(window);

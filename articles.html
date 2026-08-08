@@ -10,16 +10,16 @@
     <title>文章 · 斜小风</title>
     <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
-  <body>
+  <body class="articles-page">
     <div class="container page-head">
       <a class="back" href="index.html">← 返回首页</a>
       <h1>文章</h1>
-      <p class="muted">按年份分组</p>
+      <p class="muted">按分类分组</p>
     </div>
 
     <hr />
 
-    <div id="article-list" class="container section"></div>
+    <div id="article-list" class="container section articles-columns"></div>
 
     <div class="footer">
       <a href="index.html">首页</a>
@@ -30,7 +30,7 @@
       (function () {
         var list = document.getElementById("article-list");
         if (!list || !window.Articles) return;
-        Articles.renderByYear(list).catch(function () {
+        Articles.renderByCategory(list).catch(function () {
           list.innerHTML = '<p class="muted">文章加载失败</p>';
         });
       })();

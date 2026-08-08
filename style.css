@@ -374,3 +374,43 @@ hr {
   padding-bottom: 6px;
   border-bottom: 1px solid #eee;
 }
+
+.articles-page .container {
+  width: 100%;
+  max-width: none;
+  box-sizing: border-box;
+}
+
+.articles-columns {
+  column-count: 4;
+  column-gap: 28px;
+}
+
+.articles-columns .year-group {
+  break-inside: avoid;
+  -webkit-column-break-inside: avoid;
+  page-break-inside: avoid;
+  margin-bottom: 24px;
+}
+
+.articles-columns .year-title {
+  margin-top: 0;
+}
+
+@media (max-width: 1200px) {
+  .articles-columns {
+    column-count: 3;
+  }
+}
+
+@media (max-width: 900px) {
+  .articles-columns {
+    column-count: 2;
+  }
+}
+
+@media (max-width: 600px) {
+  .articles-columns {
+    column-count: 1;
+  }
+}

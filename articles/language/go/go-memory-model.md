@@ -2,7 +2,7 @@
 markmeta_author: wongoo
 markmeta_date: 2018-12-21
 markmeta_title: Go内存模型
-markmeta_categories: 编程语言
+markmeta_categories: program-language
 markmeta_tags: golang,memory
 -->
 

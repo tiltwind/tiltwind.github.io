@@ -2,7 +2,7 @@
 markmeta_author: wongoo
 markmeta_date: 2019-01-22
 markmeta_title: 2017 Scrum 指南™
-markmeta_categories: scrum
+markmeta_categories: agile
 markmeta_tags: scrum
 -->
 

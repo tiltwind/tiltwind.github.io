@@ -2,7 +2,7 @@
 markmeta_author: tiltwind
 markmeta_date: 2025-12-09
 markmeta_title: Rust 入门
-markmeta_categories: 编程语言
+markmeta_categories: program-language
 markmeta_tags: rust
 -->
 
