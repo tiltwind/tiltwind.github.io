@@ -1,0 +1,170 @@
+[
+  {
+    "title": "马斯克五步工作法（The Algorithm）",
+    "summary": "马斯克五步法（Musk's Algorithm）是埃隆·马斯克（Elon Musk）在 SpaceX、Tesla 反复实践并总结出的一套改进任何设计、流程或系统的通用方法，由传记作者沃尔特·艾萨克森（Walter Isaacson）在《埃隆·马斯克传》中正式记录。它的核心价值不在于任何单一步骤，而在于五步的严格顺序——绝大多数团队之所以效率低下，不是因为不懂优化、不懂自动化，而是因为把顺序搞反了…",
+    "date": "2026-07-19",
+    "path": "methodology/musk-algorithm.md",
+    "last_update": "2026-07-19"
+  },
+  {
+    "title": "第一性原理（First Principles Thinking）",
+    "summary": "第一性原理是一种回到事物最基础、无法再被推导或删减的公理性事实，再从这些基本事实重新往上推理的思维方式。它的核心只有一句话：不要因为\"大家都这么做\"或\"过去一直如此\"就接受一个结论，而要把问题拆到不能再拆的底层事实，从头重新推导。 它的价值不在于让你更\"熟练\"地沿用现有方案，而在于打破由行业惯例和历史外推设下的想象力天花板，从底层重构出别人没看到的可能性。",
+    "date": "2026-07-19",
+    "path": "methodology/first-principles.md",
+    "last_update": "2026-07-19"
+  },
+  {
+    "title": "SMART 原则",
+    "summary": "SMART 是一套用于设定目标的结构化准则，通过五个维度检验一个目标是否\"设得好\"。它的核心价值不在于告诉你该做什么，而在于把一个含糊的愿望（\"我要提升业绩\"）改造成一条清晰、可衡量、可执行、可验收的目标。理解 SMART，关键是记住：它检验的是目标本身的质量，而非目标的内容——一个通不过 SMART 的目标，往往在执行前就注定失败。",
+    "date": "2026-07-12",
+    "path": "methodology/smart.md",
+    "last_update": "2026-07-12"
+  },
+  {
+    "title": "费曼学习法（Feynman Technique）",
+    "summary": "费曼学习法是一套用于深度理解并牢固掌握知识的方法，核心思想只有一句话：如果你不能把一件事讲给外行听懂，说明你其实没真正理解它。 它以物理学家理查德·费曼（Richard Feynman）命名——费曼以能把量子电动力学这样艰深的理论讲得通俗易懂而闻名。这套方法的价值不在于帮你\"记住\"知识，而在于用\"能否讲清楚\"作为理解的试金石，把学习中似懂非懂的盲区逼出来。",
+    "date": "2026-07-12",
+    "path": "methodology/feynman-technique.md",
+    "last_update": "2026-07-12"
+  },
+  {
+    "title": "头脑风暴（Brainstorming，脑暴）",
+    "summary": "头脑风暴（Brainstorming，俗称\"脑暴\"）是一种在短时间内集体产出大量创意的方法。它的核心不是\"想出一个对的答案\"，而是先追求数量、悬置评判，把尽可能多的想法摊到桌面上，再从中筛选、组合、提炼出可行方案。理解脑暴，关键是分清它的两个阶段：发散（拼命产出）和收敛（评估选择）——很多脑暴失败，就是因为在该发散时急着评判。",
+    "date": "2026-07-08",
+    "path": "methodology/brainstorming.md",
+    "last_update": "2026-07-08"
+  },
+  {
+    "title": "人在AI开发中的角色演进",
+    "summary": "随着大语言模型能力的飞速进化，我对 AI 开发的认知也经历了深刻的变化。 从最初把 AI 当作一个\"智能补全器\"，到如今可以将完整需求交给 AI Agent 自主完成，每一次跃迁都伴随着开发模式的重构和工程师角色的重新定义。",
+    "date": "2026-02-27",
+    "path": "ai/ai-dev/ai-dev-cognitive-change.md"
+  },
+  {
+    "title": "AI 开发经验 2025",
+    "summary": "现在是2025年刚结束, 来到2026年, 首先说明 当下 我对AI编码的一些基本认知。",
+    "date": "2026-01-05",
+    "path": "ai/ai-dev/ai-dev-exp-2025.md"
+  },
+  {
+    "title": "编码能力——通往AGI的双刃剑",
+    "summary": "“过去十年，AI学会了看和说；未来十年，它将学会行动和创造。”DeepMind联合创始人德米斯·哈萨比斯在最近的访谈中如此描述AI的进化路径。而行动与创造在数字世界的终极体现，正是自主编写、修改和执行代码的能力。",
+    "date": "2025-12-25",
+    "path": "ai/think/coding-to-agi.md"
+  },
+  {
+    "title": "Rust 入门",
+    "summary": "摘要: 本文简要介绍了Rust语言的发展历史，通过文字和源代码形式介绍Rust语言基本语法、开发工具、所有权模型、并发编程等。 本文作为Rust语言的入门资料，读者可以通过本文快速了解Rust语言的基本用法。",
+    "date": "2025-12-09",
+    "path": "language/rust/rust-get-start.md"
+  },
+  {
+    "title": "AI时代软件工程的再思考：“没有银弹”理论的当代验证与新发展",
+    "summary": "在软件工程领域，Fred Brooks于1986年提出的\"没有银弹\"(No Silver Bullet)论断始终占据着核心地位，他极富洞见地指出，软件工程领域的本质性困难源于其内在的概念复杂性，而非表面上的工具不足。近四十年后，人工智能技术尤其是AI编程助手的崛起，似乎对这一经典理论发起了挑战。GitHub Copilot、Claude Code, Cursor等工具的出现，宣称能够自动生成、解…",
+    "date": "2025-11-26",
+    "path": "ai/think/ai-no-sliver-bullet.md"
+  },
+  {
+    "title": "AI基本认知",
+    "summary": "目前驱动AI的主要技术如多模态模型或LLM，其底层是一个神经网络，神经网络本质是一个信息函数，它的输入是信息，输出也是信息。",
+    "date": "2025-08-03",
+    "path": "ai/llm/ai-basic-cognitions.md"
+  },
+  {
+    "title": "低代码 vs AI",
+    "summary": "最近公司在研究低代码，想把低代码引入技术能力底座，以便支持各种快速发展的业务。",
+    "date": "2024-04-16",
+    "path": "blog/2024/2024-04-16-lowcode-vs-ai.md"
+  },
+  {
+    "title": "Python 入门",
+    "summary": "摘要: 本文简要介绍了python语言的发展历史，结合源代码介绍python语言基本语法、开发工具、并发模型、垃圾回收机制等。 本文作为python语言的入门资料，读者可以通过本文快速了解python语言的基本用法。",
+    "date": "2023-09-26",
+    "path": "language/python/python-get-start.md"
+  },
+  {
+    "title": "hessian golang 序列化库设计回顾",
+    "summary": "2019年，当时计划用golang重写公司的Java api 网关, 网关用到了dubbo的泛化调用，底层是用hessian序列化协议， 但golang当时是没有比较稳定的实现，当时找到于雨实现的版本和viant/gohessian都存在bug， 于是就自己实现了一个版本, 并实现了golang api网关的功能，实测是原来Java网关3倍的性能，但因为诸多原因，网关也没有上线。 后来于雨找到我…",
+    "date": "2023-05-23",
+    "path": "retrospect/2023-hessian-design-retro.md"
+  },
+  {
+    "title": "听《杜国楹的课程分享》后有感",
+    "summary": "听了老李分享的《杜国楹的课程分享》，有几点感受 - 价值观是持续且长久的内在动力: 价值观是一个人内在做人做事的原则，在价值观之上能建立做事的方法论，价值观决定了一个人对世界事物样子的期望，决定了一个人想要给别人带来的价值。价值观相同的人能自然凝聚在一起，并长期的去做一件事情，这也是一个公司能够长久生存的道理。 - 做事要基于一些简单而正确的模型: 简单的模型易于理解和共识，也可以很好的指导工作…",
+    "date": "2023-03-05",
+    "path": "think/2023/duguoying-share.md"
+  },
+  {
+    "title": "马斯克改造推特",
+    "summary": "马斯克收购twitter之后，就进行了大批量的裁员，并开始梳理twitter的整改业务流程， 参与 code review，优化系统功能，提升速度，增强安全。",
+    "date": "2022-11-22",
+    "path": "think/2022/musk-reform-twitter.md"
+  },
+  {
+    "title": "相对论推导练习",
+    "summary": "文章来自于 https://www.yinwang.org/blog-cn/2022/10/09/relativity , 觉得很有意思，跟着文章尝试坐坐练习。",
+    "date": "2022-10-15",
+    "path": "think/2022/relativity-deduction.md"
+  },
+  {
+    "title": "Golang 入门",
+    "summary": "摘要: 本文简要介绍了Go语言的发展历史，通过文字和源代码形式介绍Go语言基本语法、开发工具、并发模型、垃圾回收机制等。 本文作为Go语言的入门资料，读者可以通过本文快速了解Go语言的基本用法。",
+    "date": "2022-02-16",
+    "path": "language/go/go-get-start.md"
+  },
+  {
+    "title": "okr",
+    "summary": "",
+    "date": "2021-11-18",
+    "path": "organization/okr/okr.md"
+  },
+  {
+    "title": "2020 Scrum 指南（简体中文）",
+    "summary": "Scrum 权威指南：游戏规则",
+    "date": "2020-11-10",
+    "path": "organization/agile/scrum/scrum-guide-2020.md"
+  },
+  {
+    "title": "字符编码",
+    "summary": "unicode是由 Unicode Consortium 维护的字符编码标准，已和 ISO 制定的 UCS ISO/IEC 10646 保持同步，码位一一对应。",
+    "date": "2020-05-18",
+    "path": "blog/2020/2020-05-19-unicode-charset.md"
+  },
+  {
+    "title": "Tutorial on Solving a Complex Problem",
+    "summary": "来自何毓琦科学网博客: http://blog.sciencenet.cn/blog-1565-1232111.html",
+    "date": "2020-05-14",
+    "path": "methodology/solving-complex-problem.md"
+  },
+  {
+    "title": "5W1H",
+    "summary": "5W1H 是一套结构化的提问框架（又称\"六何分析法\"），通过固定的六个维度审视一件事，帮助人们把问题想全、说清、做实。它的核心价值不在于回答，而在于用一份\"检查清单\"逼自己不遗漏关键要素。",
+    "date": "2019-05-08",
+    "path": "methodology/5w1h.md",
+    "last_update": "2026-07-08"
+  },
+  {
+    "title": "2017 Scrum 指南™",
+    "summary": "2017 年 11 月, 由 Scrum 创始人 Ken Schwaber 和 Jeff Sutherland 开发并维护",
+    "date": "2019-01-22",
+    "path": "organization/agile/scrum/scrum-guide-2017.md"
+  },
+  {
+    "title": "Go内存模型",
+    "summary": "原文《The Go Memory Model》, 已有中文翻译，整体翻译不错，但主要是一一对照翻译，有些翻译有错，加上英文版本有些地方写得也很教材化，翻译有些晦涩难懂，所以想自己来翻译一下，按照理解进行翻译，对重点内容进行译注说明，希望能做到简单明了。",
+    "date": "2018-12-21",
+    "path": "language/go/go-memory-model.md"
+  },
+  {
+    "title": "贝叶斯推断及实例",
+    "summary": "英国数学家托马斯·贝叶斯（Thomas Bayes）在1763年发表的一篇论文中，首先提出了这个定理。",
+    "date": "2018-09-21",
+    "path": "math/bayesian-inference.md"
+  },
+  {
+    "title": "踏上Scrum敏捷之路",
+    "summary": "我们团队正在Scrum敏捷实践道路上，在拥抱Scrum之前，团队成员都有很多问题，敏捷到底是什么？Scrum又是什么？为什么需要敏捷？敏捷到底要怎么做？为了让大家认识了解Scrum，在公司内部进行了一次Scrum的分享会。本文将这次分享会PPT稍作整理，希望通过这篇文章，大家都能找到这些问题的答案。",
+    "date": "2018-03-07",
+    "path": "organization/agile/agile-scrum.md"
+  }
+]

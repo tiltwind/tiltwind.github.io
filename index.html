@@ -1,42 +1,361 @@
-<html>
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta
+      name="description"
+      content="斜小风（tiltwind）个人主页。15+ 年平台与架构经验，近期专注 AI Agent 与软件工程。"
+    />
+    <title>斜小风 · tiltwind</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body>
+    <div id="dhead" class="container">
+      <div class="row">
+        <div id="dpic">
+          <img src="assets/me.png" alt="斜小风" />
+        </div>
+        <div id="ddesc">
+          <h1>斜小风<span class="aka">tiltwind</span></h1>
+          <h2>做平台、写架构，最近在做 AI Agent。</h2>
+          <div id="dico">
+            <a
+              class="iico"
+              href="https://github.com/tiltwind"
+              title="GitHub"
+              target="_blank"
+              rel="noopener"
+              >GH</a
+            >
+            <a
+              class="iico"
+              href="https://weibo.com/u/9187761101"
+              title="微博"
+              target="_blank"
+              rel="noopener"
+              >WB</a
+            >
+            <span
+              class="iico"
+              id="iemail"
+              style="cursor: pointer"
+              title="点击显示邮箱"
+              >@</span
+            >
+          </div>
+          <div id="demail"></div>
+        </div>
+      </div>
+    </div>
 
-<head>
-  <title>tiltwind-斜风</title>
-</head>
+    <hr />
 
-<body>
-  <h3>Tools</h3>
-  <a href="tools/urlencode.htm" target="_blank">UrlEncode</a>
-  <a href="tools/base64.htm" target="_blank">Base64</a>
-  <a href="tools/sqlformat.htm" target="_blank">SqlFormat</a>
-  <a href="tools/jsonformat.htm" target="_blank">JsonFormat</a>
-  <a href="tools/numberconvert.htm" target="_blank">NumberConvert</a>
-  <a href="tools/loan_calc.html" target="_blank">LoanCalc</a>
-  <a href="tools/compound_interest_calc.html" target="_blank">复利计算</a>
-  <hr>
-  <h3>Articles</h3>
-  <a href="https://tiltwind.com/note" target="_blank">note</a> |
-  <a href="https://tiltwind.com/blog" target="_blank">blog</a> |
-  <a href="https://tiltwind.com/organization" target="_blank">organization</a>
-  |
-  <a href="https://tiltwind.com/awsome-ai" target="_blank">awsome-ai</a>|
-  <a href="https://tiltwind.com/maconf" target="_blank">macos config</a>
-  <br />
-  <a href="https://tiltwind.com/medical-health"
-    target="_blank">medical-health</a> |
-  <a href="https://tiltwind.com/ADHD" target="_blank">ADHD</a>
-  <br />
-  <a href="https://tiltwind.com/math" target="_blank">math</a> |
-  <a href="https://tiltwind.com/english" target="_blank">english</a> |
-  <a href="https://tiltwind.com/teaching" target="_blank">teaching</a>
-  <hr>
-  <h3>Open Sources</h3>
-  <a href="https://github.com/apache/dubbo-go" target="_blank">dubbo-go</a> |
-  <a href="https://github.com/apache/dubbo-go-hessian2"
-    target="_blank">dubbo-go-hessian2</a> |
-  <a href="https://github.com/vogo" target="_blank">vogo golang projects</a> |
-  <a href="https://github.com/jvmbytes" target="_blank">jvmbytes java
-    projects</a> |
-</body>
+    <nav class="nav container">
+      <a href="#articles">文章</a>
+      <a href="#history">经历</a>
+      <a href="#bio">简介</a>
+      <a href="#projects">开源</a>
+      <a href="#talks">分享</a>
+      <a href="#tools">工具</a>
+    </nav>
 
+    <hr />
+
+    <div id="articles" class="container section">
+      <div class="ctitle">文章</div>
+      <div id="article-list"></div>
+      <p class="articles-more">
+        <a href="articles.html">更多文章 →</a>
+      </p>
+    </div>
+
+    <div id="history" class="container">
+      <div class="entry row">
+        <div class="timespan">2026.05 -</div>
+        <div class="ico">
+          <div class="entry-dot"></div>
+          <span class="badge">AI</span>
+        </div>
+        <div class="desc">
+          实践 AI Agent 与软件工程开发平台：
+          <a href="https://github.com/vogo/vage" target="_blank" rel="noopener"
+            >vage</a
+          >
+         （Go Agent 框架）、
+          <a href="https://github.com/vogo/vv" target="_blank" rel="noopener"
+            >vv</a
+          >、
+          <a
+            href="https://github.com/sequencestream/c3"
+            target="_blank"
+            rel="noopener"
+            >c3</a
+          >
+         （AI 开发工作台：多模型、SDD、worktree、sandbox、自动化流程）。
+        </div>
+      </div>
+
+      <div class="entry row">
+        <div class="timespan">2020 - 2026</div>
+        <div class="ico">
+          <div class="entry-dot"></div>
+          <span class="badge">好慷</span>
+        </div>
+        <div class="desc">
+          <a href="https://shangshangji.com" target="_blank" rel="noopener"
+            >好慷</a
+          >
+          · 技术经理 / 部门负责人。管理 30+ 人团队，负责用户、员工、营销、履约等中台及基础服务建设。
+          <ul>
+            <li>上上吉零工：原型、需求 Agent、SDD开发、客户智能体与AI内容生成落地。</li>
+            <li>订单中台、产品中台、快速二层业务平台。</li>
+            <li>API 开放平台、支付中心、效能平台、消息中台、账号中心。</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="entry row">
+        <div class="timespan">2018 - 2020</div>
+        <div class="ico">
+          <div class="entry-dot"></div>
+          <span class="badge">瑞幸</span>
+        </div>
+        <div class="desc">
+          瑞幸咖啡 · Teamleader。统一应用平台（元数据 / CI/CD /
+          环境参数）；混沌工程故障植入；K8s 云平台与高性能 Go API 网关。
+        </div>
+      </div>
+
+      <div class="entry row">
+        <div class="timespan">2016 - 2018</div>
+        <div class="ico">
+          <div class="entry-dot"></div>
+          <span class="badge">声连</span>
+        </div>
+        <div class="desc">
+          声连网 · 技术经理。从 0 到 1 建设声动开放平台；高并发声码解析（单机
+          2w+）；推动团队 Java → Golang 与敏捷转型。
+        </div>
+      </div>
+
+      <div class="entry row">
+        <div class="timespan">2008 - 2016</div>
+        <div class="ico">
+          <div class="entry-dot"></div>
+          <span class="badge">慧讯</span>
+        </div>
+        <div class="desc">
+          慧讯 · 技术经理。消费金融审批系统（中银 / 中邮 /
+          杭银）：架构、性能优化与团队管理。
+        </div>
+      </div>
+
+      <div class="entry row">
+        <div class="timespan">2004 - 2008</div>
+        <div class="ico">
+          <div class="entry-dot"></div>
+          <span class="badge">陕师</span>
+        </div>
+        <div class="desc">陕西师范大学 · 计算机科学与技术 本科。</div>
+      </div>
+    </div>
+
+    <div id="bio" class="container section">
+      <div class="ctitle">简介</div>
+      <div>
+        斜小风（tiltwind），厦门。15+
+        年互联网平台开发与架构经验，多年技术团队管理。深耕中台与分布式高并发，精通
+        Go / Java / Python。Apache Dubbo PMC。近期专注 AI Agent、Skill
+        与 AI 软件工程落地。
+      </div>
+    </div>
+
+    <div id="projects" class="container section">
+      <div class="ctitle">开源</div>
+      <ul class="project-list">
+        <li>
+          <a href="https://github.com/vogo/vage" target="_blank" rel="noopener"
+            >vage</a
+          >
+          · Go AI Agent 框架
+        </li>
+        <li>
+          <a
+            href="https://github.com/sequencestream/c3"
+            target="_blank"
+            rel="noopener"
+            >c3</a
+          >
+          · AI 软件开发工作台
+        </li>
+        <li>
+          <a
+            href="https://github.com/apache/dubbo-go"
+            target="_blank"
+            rel="noopener"
+            >dubbo-go</a
+          >
+          · Apache Dubbo Go 实现
+          <span class="tag">PMC</span>
+        </li>
+        <li>
+          <a
+            href="https://github.com/apache/dubbo-go-hessian2"
+            target="_blank"
+            rel="noopener"
+            >dubbo-go-hessian2</a
+          >
+          · Hessian2 协议
+        </li>
+        <li>
+          <a href="https://github.com/jvmbytes" target="_blank" rel="noopener"
+            >jvmbytes</a
+          >
+          · Java 字节码动态切面
+        </li>
+        <li>
+          <a href="https://github.com/vogo" target="_blank" rel="noopener"
+            >vogo</a
+          >
+          · 更多 Go 项目
+        </li>
+      </ul>
+    </div>
+
+    <div id="talks" class="container section">
+      <div class="ctitle">分享</div>
+      <p class="muted">
+        精选自
+        <a href="https://github.com/tiltwind/ppt" target="_blank" rel="noopener"
+          >tiltwind/ppt</a
+        >
+      </p>
+      <ul class="talk-list">
+        <li>
+          <a
+            href="https://github.com/tiltwind/ppt/blob/main/ai/AI%E6%97%B6%E4%BB%A3%E7%9A%84%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-v20260614.epub"
+            target="_blank"
+            rel="noopener"
+            >《AI 时代的软件工程》</a
+          >
+          · 与 Claude 合写
+          <span class="tag">电子书</span>
+        </li>
+        <li>
+          <a
+            href="https://github.com/tiltwind/ppt/blob/main/ai/%E6%88%91%E7%9A%84AI%E5%BC%80%E5%8F%91%E7%BB%8F%E9%AA%8C2025.pptx"
+            target="_blank"
+            rel="noopener"
+            >我的 AI 开发经验 2025</a
+          >
+          <span class="tag">AI</span>
+        </li>
+        <li>
+          <a
+            href="https://github.com/tiltwind/ppt/blob/main/work/dive-into-ddd-2021.pptx"
+            target="_blank"
+            rel="noopener"
+            >深入 DDD</a
+          >
+          <span class="tag">架构</span>
+        </li>
+        <li>
+          <a
+            href="https://github.com/tiltwind/ppt/blob/main/work/%E6%B7%B7%E6%B2%8C%E5%B7%A5%E7%A8%8B%E4%BB%8B%E7%BB%8D-20201120.pptx"
+            target="_blank"
+            rel="noopener"
+            >混沌工程介绍</a
+          >
+          <span class="tag">稳定性</span>
+        </li>
+        <li>
+          <a
+            href="https://github.com/tiltwind/ppt/blob/main/work/microservice.pptx"
+            target="_blank"
+            rel="noopener"
+            >微服务</a
+          >
+          <span class="tag">架构</span>
+        </li>
+        <li>
+          <a
+            href="https://github.com/tiltwind/ppt/blob/main/work/database-sharding-2021.pptx"
+            target="_blank"
+            rel="noopener"
+            >数据库分片</a
+          >
+          <span class="tag">数据</span>
+        </li>
+        <li>
+          <a
+            href="https://github.com/tiltwind/ppt/blob/main/work/golang-for-javaer.pptx"
+            target="_blank"
+            rel="noopener"
+            >Golang for Javaer</a
+          >
+          <span class="tag">Go</span>
+        </li>
+        <li>
+          <a
+            href="https://github.com/tiltwind/ppt/blob/main/cloudnative/%E9%9A%94%E7%A6%BB%E5%AE%B9%E5%99%A8%E5%AE%9E%E7%8E%B0.pptx"
+            target="_blank"
+            rel="noopener"
+            >隔离容器实现</a
+          >
+          <span class="tag">云原生</span>
+        </li>
+        <li>
+          <a
+            href="https://github.com/tiltwind/ppt/blob/main/arch/%E4%BB%A3%E7%A0%81%E7%9A%84%E8%89%BA%E6%9C%AF%202019%E7%89%88%E8%AF%BE%E4%BB%B6.pdf"
+            target="_blank"
+            rel="noopener"
+            >代码的艺术</a
+          >
+          <span class="tag">工程</span>
+        </li>
+      </ul>
+    </div>
+
+    <div id="tools" class="container section">
+      <div class="ctitle">小工具</div>
+      <ul class="link-list">
+        <li>
+          <a href="tools/jsonformat.htm">JSON</a> ·
+          <a href="tools/sqlformat.htm">SQL</a> ·
+          <a href="tools/base64.htm">Base64</a> ·
+          <a href="tools/urlencode.htm">URL Encode</a> ·
+          <a href="tools/numberconvert.htm">进制转换</a> ·
+          <a href="tools/loan_calc.html">贷款计算</a> ·
+          <a href="tools/compound_interest_calc.html">复利计算</a>
+        </li>
+      </ul>
+    </div>
+
+    <script src="articles.js"></script>
+    <script>
+      (function () {
+        var btn = document.getElementById("iemail");
+        var box = document.getElementById("demail");
+        if (btn && box) {
+          btn.addEventListener("click", function () {
+            var u = "gelnyang";
+            var d = "163.com";
+            box.textContent = u + "@" + d;
+            box.classList.add("show");
+          });
+        }
+
+        var list = document.getElementById("article-list");
+        if (list && window.Articles) {
+          Articles.renderLatest(list, 5).catch(function () {
+            list.innerHTML = '<p class="muted">文章加载失败</p>';
+          });
+        }
+      })();
+    </script>
+  </body>
 </html>

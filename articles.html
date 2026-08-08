@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="斜小风的文章列表" />
+    <title>文章 · 斜小风</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body>
+    <div class="container page-head">
+      <a class="back" href="index.html">← 返回首页</a>
+      <h1>文章</h1>
+      <p class="muted">按年份分组</p>
+    </div>
+
+    <hr />
+
+    <div id="article-list" class="container section"></div>
+
+    <div class="footer">
+      <a href="index.html">首页</a>
+    </div>
+
+    <script src="articles.js"></script>
+    <script>
+      (function () {
+        var list = document.getElementById("article-list");
+        if (!list || !window.Articles) return;
+        Articles.renderByYear(list).catch(function () {
+          list.innerHTML = '<p class="muted">文章加载失败</p>';
+        });
+      })();
+    </script>
+  </body>
+</html>
