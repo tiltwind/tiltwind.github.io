@@ -2,7 +2,7 @@
 markmeta_author: titlwind
 markmeta_date: 2023-05-23
 markmeta_title: hessian golang 序列化库设计回顾
-markmeta_categories: design
+markmeta_categories: retrospect
 markmeta_tags: hessian,design,retrospection
 -->
 
