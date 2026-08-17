@@ -40,6 +40,20 @@
               >WB</a
             >
             <span
+              class="iico wx-trigger"
+              data-wx="公众号"
+              style="cursor: pointer"
+              title="微信公众号"
+              >MP</span
+            >
+            <span
+              class="iico wx-trigger"
+              data-wx="视频号"
+              style="cursor: pointer"
+              title="微信视频号"
+              >SP</span
+            >
+            <span
               class="iico"
               id="iemail"
               style="cursor: pointer"
@@ -112,7 +126,7 @@
           · 技术经理 / 部门负责人。管理 30+ 人团队，负责用户、员工、营销、履约等中台及基础服务建设。
           <ul>
             <li>上上吉零工：原型、需求 Agent、SDD开发、客户智能体与AI内容生成落地。</li>
-            <li>订单中台、产品中台、快速二层业务平台。</li>
+            <li>订单中台、产品中台、golang二层业务平台。</li>
             <li>API 开放平台、支付中心、效能平台、消息中台、账号中心。</li>
           </ul>
         </div>
@@ -125,8 +139,7 @@
           <span class="badge">瑞幸</span>
         </div>
         <div class="desc">
-          瑞幸咖啡 · Teamleader。统一应用平台（元数据 / CI/CD /
-          环境参数）；混沌工程故障植入；K8s 云平台与高性能 Go API 网关。
+          瑞幸咖啡 · Teamleader。统一应用平台（元数据 / CI/CD /环境参数）；混沌工程/故障实验/影子库；K8s 云平台与高性能 Go API 网关。
         </div>
       </div>
 
@@ -137,8 +150,7 @@
           <span class="badge">声连</span>
         </div>
         <div class="desc">
-          声连网 · 技术经理。从 0 到 1 建设声动开放平台；高并发声码解析（单机
-          2w+）；推动团队 Java → Golang 与敏捷转型。
+          声连网 · 技术经理。从 0 到 1 建设声动开放平台；高并发声码解析（单机2w+）；推动团队 Java → Golang 与敏捷转型。
         </div>
       </div>
 
@@ -149,8 +161,7 @@
           <span class="badge">慧讯</span>
         </div>
         <div class="desc">
-          慧讯 · 技术经理。消费金融审批系统（中银 / 中邮 /
-          杭银）：架构、性能优化与团队管理。
+          慧讯 · 技术经理。消费金融审批系统（中银 / 中邮 / 杭银）：架构、性能优化与团队管理。
         </div>
       </div>
 
@@ -335,6 +346,15 @@
       </ul>
     </div>
 
+    <div id="wx-modal" class="modal" hidden>
+      <div class="modal-mask"></div>
+      <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="wx-modal-title">
+        <div class="modal-title" id="wx-modal-title">微信公众号</div>
+        <div class="modal-body">微信搜索 <strong>斜小风</strong></div>
+        <button type="button" class="modal-close">知道了</button>
+      </div>
+    </div>
+
     <script src="articles.js"></script>
     <script>
       (function () {
@@ -346,6 +366,26 @@
             var d = "163.com";
             box.textContent = u + "@" + d;
             box.classList.add("show");
+          });
+        }
+
+        var modal = document.getElementById("wx-modal");
+        if (modal) {
+          var title = modal.querySelector(".modal-title");
+          var close = function () {
+            modal.hidden = true;
+          };
+          var triggers = document.querySelectorAll(".wx-trigger");
+          for (var i = 0; i < triggers.length; i++) {
+            triggers[i].addEventListener("click", function () {
+              title.textContent = "微信" + this.getAttribute("data-wx");
+              modal.hidden = false;
+            });
+          }
+          modal.querySelector(".modal-mask").addEventListener("click", close);
+          modal.querySelector(".modal-close").addEventListener("click", close);
+          document.addEventListener("keydown", function (e) {
+            if (e.key === "Escape") close();
           });
         }
 
