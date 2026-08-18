@@ -116,9 +116,51 @@
     });
   }
 
+  function yearKey(article) {
+    var date = String(article.date || "");
+    var year = date.slice(0, 4);
+    return /^\d{4}$/.test(year) ? year : "未知";
+  }
+
+  function renderByDate(container) {
+    return loadArticles().then(function (articles) {
+      var groups = {};
+      var keys = [];
+
+      articles.forEach(function (article) {
+        var key = yearKey(article);
+        if (!groups[key]) {
+          groups[key] = [];
+          keys.push(key);
+        }
+        groups[key].push(article);
+      });
+
+      keys.sort(function (a, b) {
+        if (a === "未知") return 1;
+        if (b === "未知") return -1;
+        return b.localeCompare(a);
+      });
+
+      container.innerHTML = keys
+        .map(function (key) {
+          return (
+            '<section class="year-group">' +
+            '<h2 class="year-title">' +
+            escapeHtml(key) +
+            "</h2>" +
+            groups[key].map(renderArticleItem).join("") +
+            "</section>"
+          );
+        })
+        .join("");
+    });
+  }
+
   global.Articles = {
     load: loadArticles,
     renderLatest: renderLatest,
     renderByCategory: renderByCategory,
+    renderByDate: renderByDate,
   };
 })(window);

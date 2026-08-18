@@ -14,12 +14,19 @@
     <div class="container page-head">
       <a class="back" href="index.html">← 返回首页</a>
       <h1>文章</h1>
-      <p class="muted">按分类分组</p>
+      <div class="view-switch">
+        <button type="button" class="view-btn" data-view="date">
+          按时间
+        </button>
+        <button type="button" class="view-btn" data-view="category">
+          按分类
+        </button>
+      </div>
     </div>
 
     <hr />
 
-    <div id="article-list" class="container section articles-columns"></div>
+    <div id="article-list" class="container section"></div>
 
     <div class="footer">
       <a href="index.html">首页</a>
@@ -29,10 +36,68 @@
     <script>
       (function () {
         var list = document.getElementById("article-list");
+        var buttons = document.querySelectorAll(".view-btn");
         if (!list || !window.Articles) return;
-        Articles.renderByCategory(list).catch(function () {
-          list.innerHTML = '<p class="muted">文章加载失败</p>';
+
+        var STORAGE_KEY = "articles-view";
+
+        function readView() {
+          var hash = (location.hash || "").replace(/^#/, "");
+          if (hash === "date" || hash === "category") return hash;
+          try {
+            var saved = localStorage.getItem(STORAGE_KEY);
+            if (saved === "date" || saved === "category") return saved;
+          } catch (e) {}
+          return "date";
+        }
+
+        function render(view) {
+          for (var i = 0; i < buttons.length; i++) {
+            var btn = buttons[i];
+            if (btn.getAttribute("data-view") === view) {
+              btn.classList.add("active");
+            } else {
+              btn.classList.remove("active");
+            }
+          }
+
+          if (view === "category") {
+            list.className = "container section articles-columns";
+            document.body.className = "articles-page view-category";
+          } else {
+            list.className = "container section articles-timeline";
+            document.body.className = "articles-page view-date";
+          }
+
+          var task =
+            view === "category"
+              ? Articles.renderByCategory(list)
+              : Articles.renderByDate(list);
+
+          task.catch(function () {
+            list.innerHTML = '<p class="muted">文章加载失败</p>';
+          });
+        }
+
+        for (var i = 0; i < buttons.length; i++) {
+          buttons[i].addEventListener("click", function () {
+            var view = this.getAttribute("data-view");
+            try {
+              localStorage.setItem(STORAGE_KEY, view);
+            } catch (e) {}
+            if (location.hash.replace(/^#/, "") !== view) {
+              location.hash = view;
+            } else {
+              render(view);
+            }
+          });
+        }
+
+        window.addEventListener("hashchange", function () {
+          render(readView());
         });
+
+        render(readView());
       })();
     </script>
   </body>

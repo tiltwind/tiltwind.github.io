@@ -468,3 +468,50 @@ hr {
     column-count: 1;
   }
 }
+
+.view-switch {
+  margin-top: 10px;
+}
+
+.view-btn {
+  display: inline-block;
+  padding: 4px 12px;
+  margin-right: 8px;
+  font-size: 14px;
+  font-family: inherit;
+  color: #666;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 14px;
+  cursor: pointer;
+}
+
+.view-btn:hover {
+  color: #06c;
+  border-color: #bcd;
+}
+
+.view-btn.active {
+  color: #fff;
+  background: #666;
+  border-color: #666;
+}
+
+.articles-page .container.articles-timeline {
+  max-width: 860px;
+}
+
+.articles-timeline .year-group {
+  margin-bottom: 18px;
+}
+
+.articles-timeline .year-group:first-child .year-title {
+  margin-top: 0;
+}
+
+.articles-page.view-date .page-head,
+.articles-page.view-date hr {
+  max-width: 860px;
+  margin-left: auto;
+  margin-right: auto;
+}

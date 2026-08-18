@@ -20,5 +20,89 @@
       "元认知"
     ],
     "last_update": "2026-08-16"
+  },
+  {
+    "title": "多智能体共识投票",
+    "summary": "让多个 agent 先替你投票：能自动定的就自动定，定不了才叫你 —— 在“每一步都要你点确认”的基础上再松一档，把你从连轴的审批里进一步解放出来，更轻松地只等结果。",
+    "date": "2026-08-03",
+    "url": "https://mp.weixin.qq.com/s/4J9IrUaV1I4J_JzamFSVBQ",
+    "platform": "公众号",
+    "author": "斜小风",
+    "published_at": "2026-08-03",
+    "categories": [
+      "ai"
+    ],
+    "tags": [
+      "ai",
+      "agent",
+      "多智能体",
+      "共识",
+      "投票",
+      "自动化"
+    ],
+    "last_update": "2026-08-03"
+  },
+  {
+    "title": "从人开会到 Agent 讨论",
+    "summary": "传统会议是“凑齐一群人、争夺发言权、靠纪要留痕”；Agent 讨论是“随叫随到的多视角圆桌，过程全程留痕，结论直接接入开发流程”。",
+    "date": "2026-07-06",
+    "url": "https://mp.weixin.qq.com/s/o_yA_KSCFaE67uYj85nhSA",
+    "platform": "公众号",
+    "author": "斜小风",
+    "published_at": "2026-07-06",
+    "categories": [
+      "ai"
+    ],
+    "tags": [
+      "ai",
+      "agent",
+      "会议",
+      "协作",
+      "多视角",
+      "软件工程"
+    ],
+    "last_update": "2026-07-06"
+  },
+  {
+    "title": "SDD 规范驱动开发",
+    "summary": "规范驱动开发（SDD, Spec-Driven Development）的做法是：在智能体动手编码之前，先产出一份人可评审的规范文档（spec），经人工批准后才进入开发——把人的把关点从“读代码”前移到“读文档”。",
+    "date": "2026-07-04",
+    "url": "https://mp.weixin.qq.com/s/IDlb9Ti4R5_rbkfzOtBt4A",
+    "platform": "公众号",
+    "author": "斜小风",
+    "published_at": "2026-07-04",
+    "categories": [
+      "ai"
+    ],
+    "tags": [
+      "ai",
+      "sdd",
+      "规范驱动开发",
+      "spec",
+      "agent",
+      "软件工程"
+    ],
+    "last_update": "2026-07-04"
+  },
+  {
+    "title": "从需求到意图",
+    "summary": "在 AI 软件工程时代，表达“我们要做什么”的单元正在从传统的需求转变为意图。意图内容的核心是五个维度：Why、What、Trade-offs、When、Acceptance。这是能够被智能体正确执行、被人可靠验收的最小完整信息集",
+    "date": "2026-07-03",
+    "url": "https://mp.weixin.qq.com/s/r2rsPy5GnW5dvFgzjW9_-Q",
+    "platform": "公众号",
+    "author": "斜小风",
+    "published_at": "2026-07-03 14:40",
+    "categories": [
+      "ai"
+    ],
+    "tags": [
+      "ai",
+      "需求",
+      "意图",
+      "软件工程",
+      "agent",
+      "验收"
+    ],
+    "last_update": "2026-07-03"
   }
 ]
