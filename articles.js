@@ -7,11 +7,15 @@
       .replace(/"/g, "&quot;");
   }
 
-  function articleHref(path) {
-    return "articles/" + String(path).replace(/\.md$/i, "");
+  function articleHref(article) {
+    if (article.url) return String(article.url);
+    return "articles/" + String(article.path).replace(/\.md$/i, "");
   }
 
   function renderArticleItem(article) {
+    var external = !!article.url;
+    var platform = article.platform ? article.platform : "外部";
+
     return (
       '<article class="article-item">' +
       '<div class="article-meta">' +
@@ -19,10 +23,13 @@
       escapeHtml(article.date) +
       "</span>" +
       '<a class="article-title" href="' +
-      escapeHtml(articleHref(article.path)) +
-      '">' +
+      escapeHtml(articleHref(article)) +
+      '"' +
+      (external ? ' target="_blank" rel="noopener"' : "") +
+      ">" +
       escapeHtml(article.title) +
       "</a>" +
+      (external ? '<span class="tag">' + escapeHtml(platform) + "</span>" : "") +
       "</div>" +
       '<p class="article-summary">' +
       escapeHtml(article.summary) +
@@ -31,10 +38,31 @@
     );
   }
 
+  function fetchJson(url, optional) {
+    return fetch(url)
+      .then(function (res) {
+        if (!res.ok) throw new Error("failed to load " + url);
+        return res.json();
+      })
+      .catch(function (err) {
+        if (optional) return [];
+        throw err;
+      });
+  }
+
   function loadArticles() {
-    return fetch("articles/articles.json").then(function (res) {
-      if (!res.ok) throw new Error("failed to load articles");
-      return res.json();
+    return Promise.all([
+      fetchJson("articles/articles.json", false),
+      fetchJson("articles/publish-articles.json", true),
+    ]).then(function (results) {
+      var merged = [];
+      results.forEach(function (list) {
+        if (Array.isArray(list)) merged = merged.concat(list);
+      });
+      merged.sort(function (a, b) {
+        return String(b.date || "").localeCompare(String(a.date || ""));
+      });
+      return merged;
     });
   }
 
