@@ -1,5 +1,27 @@
 [
   {
+    "title": "c3 开发回顾：82 天，从浏览器权限网关到 AI 工作台",
+    "summary": "c3（Code Creative Center）是一个 AI 工作台：在一个浏览器界面里集中管理和驱动多个 AI coding agent（Claude Code、Codex、Cursor）的工作。",
+    "date": "2026-08-18",
+    "url": "https://mp.weixin.qq.com/s/4M7_IM7gkFHxUl9aIO7BSg",
+    "platform": "公众号",
+    "author": "斜小风",
+    "published_at": "2026-08-18 23:39",
+    "categories": [
+      "ai"
+    ],
+    "tags": [
+      "c3",
+      "ai",
+      "agent",
+      "claude code",
+      "codex",
+      "cursor",
+      "工作台"
+    ],
+    "last_update": "2026-08-18"
+  },
+  {
     "title": "DeepSeek Harness：“一切皆插件”如何铺就AGI的自进化之路",
     "summary": "“一切皆插件”赋予Agent的，是一种元认知能力——它不仅能思考，还能审视并修改自己用来思考的“零件”。这或许正是从Agent迈向“持续学习”与“自我迭代”那一阶最需要的底层能力。",
     "date": "2026-08-16",
