@@ -1,5 +1,27 @@
 [
   {
+    "title": "AI 产出内容的审核级别",
+    "summary": "AI 从「给建议」走向「自主执行」，关键决策变成「做完之后要审到多深」。文章给出四档级别：L1 不审核、L2 审核结果、L3 审核方案、L4 审核细节，按影响范围与产出形态交叉定级，任一因素落在「大」即按大处理。",
+    "date": "2026-09-07",
+    "url": "https://mp.weixin.qq.com/s/hyf_CJUE9oi4gyUggifEfg",
+    "platform": "公众号",
+    "author": "斜小风",
+    "published_at": "2026-09-07 17:31",
+    "categories": [
+      "ai"
+    ],
+    "tags": [
+      "ai",
+      "agent",
+      "审核级别",
+      "人机协作",
+      "风险控制",
+      "影响范围",
+      "自主执行"
+    ],
+    "last_update": "2026-09-07"
+  },
+  {
     "title": "c3 开发回顾：82 天，从浏览器权限网关到 AI 工作台",
     "summary": "c3（Code Creative Center）是一个 AI 工作台：在一个浏览器界面里集中管理和驱动多个 AI coding agent（Claude Code、Codex、Cursor）的工作。",
     "date": "2026-08-18",
