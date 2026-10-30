@@ -9,11 +9,34 @@
 }
 
 #menu {
+    display: none;
     font-size: 12px;
-    float: left;
     position: fixed;
+    left: 8px;
+    top: 8px;
+    width: 32px;
     height: 98%;
     overflow: auto;
+    overflow-wrap: anywhere;
+}
+
+@media screen and (min-width: 900px) {
+    body.has-menu {
+        --menu-width: clamp(180px, 22vw, 260px);
+        padding-left: 48px;
+    }
+
+    body.has-menu #menu {
+        display: block;
+    }
+
+    body.menu-open {
+        padding-left: calc(var(--menu-width) + 16px);
+    }
+
+    body.menu-open #menu {
+        width: var(--menu-width);
+    }
 }
 
 #menu ul {

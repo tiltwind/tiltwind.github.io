@@ -84,12 +84,9 @@ function marktitle() {
 }
 
 function markmenu() {
-    if (window.innerWidth < 900) {
-        return
-    }
-    let menuWidth = (window.innerWidth - 860) / 2;
-
     let menu = dom("menu");
+    menu.replaceChildren();
+    document.body.classList.remove('has-menu', 'menu-open');
     menu.classList.add("no-print");
 
     let previousLevel = 0;
@@ -99,7 +96,8 @@ function markmenu() {
     let h3Seq = 0;
     let link;
 
-    let headings = document.querySelectorAll('h1, h2, h3');
+    let headings = Array.from(dom('app').querySelectorAll('h1, h2, h3'))
+        .filter(heading => heading.innerText.trim() !== '');
     if (headings.length <= 0) {
         return
     }
@@ -115,8 +113,10 @@ function markmenu() {
 
     let content = ndom('div');
     content.id = 'menu-content';
+    document.body.classList.add('has-menu', 'menu-open');
     toggle.addEventListener('click', function () {
         content.hidden = !content.hidden;
+        document.body.classList.toggle('menu-open', !content.hidden);
         let label = content.hidden ? '展开目录' : '收起目录';
         toggle.setAttribute('aria-label', label);
         toggle.title = label;
@@ -155,7 +155,7 @@ function markmenu() {
         // set id before creating the link
         heading.setAttribute("id", "heading_" + h1Seq + "_" + h2Seq + "_" + h3Seq);
 
-        link = makeLink(heading, menuWidth)
+        link = makeLink(heading)
 
         let ul;
 
@@ -177,9 +177,8 @@ function markmenu() {
     });
 }
 
-function makeLink(h, menuWidth) {
+function makeLink(h) {
     let link = ndom('li')
-    link.style.width = menuWidth;
     window.arst = h
     link.innerHTML =
         '<a class="section-link" data-scroll href="#' +
@@ -346,6 +345,7 @@ function loadmark(url) {
         url = url + "README.md"
     }
     dom("menu").innerHTML = ""
+    document.body.classList.remove('has-menu', 'menu-open');
     ajaxget(url, function (xmlhttp) {
         var app;
         if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
