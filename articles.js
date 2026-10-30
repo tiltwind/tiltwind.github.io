@@ -9,7 +9,7 @@
 
   function articleHref(article) {
     if (article.url) return String(article.url);
-    return "articles/" + String(article.path).replace(/\.md$/i, "");
+    return "markhtml.html#articles/" + encodeURI(String(article.path));
   }
 
   function renderArticleItem(article) {
