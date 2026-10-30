@@ -89,8 +89,8 @@ function markmenu() {
     }
     let menuWidth = (window.innerWidth - 860) / 2;
 
-    let previousLi = dom("menu");
-    previousLi.classList.add("no-print");
+    let menu = dom("menu");
+    menu.classList.add("no-print");
 
     let previousLevel = 0;
     let previousUl;
@@ -103,6 +103,23 @@ function markmenu() {
     if (headings.length <= 0) {
         return
     }
+
+    let toggle = ndom('button');
+    toggle.type = 'button';
+    toggle.className = 'menu-toggle';
+    toggle.textContent = '收起目录';
+    toggle.setAttribute('aria-expanded', 'true');
+    toggle.setAttribute('aria-controls', 'menu-content');
+
+    let content = ndom('div');
+    content.id = 'menu-content';
+    toggle.addEventListener('click', function () {
+        content.hidden = !content.hidden;
+        toggle.textContent = content.hidden ? '展开目录' : '收起目录';
+        toggle.setAttribute('aria-expanded', String(!content.hidden));
+    });
+    menu.replaceChildren(toggle, content);
+    let previousLi = content;
 
     headings.forEach(heading => {
         if (heading.innerText === "") {

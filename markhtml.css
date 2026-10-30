@@ -13,7 +13,7 @@
     float: left;
     position: fixed;
     height: 98%;
-    overflow: scroll;
+    overflow: auto;
 }
 
 #menu ul {
@@ -26,6 +26,23 @@
 
 #menu a {
     color: var(--color-fg-default);
+    text-decoration: none;
+}
+
+#menu .menu-toggle {
+    position: sticky;
+    top: 0;
+    padding: 6px 10px;
+    border: 1px solid #d1d9e0;
+    border-radius: 6px;
+    background: var(--color-canvas-default, Canvas);
+    color: var(--color-fg-default, CanvasText);
+    font: inherit;
+    cursor: pointer;
+}
+
+#menu .menu-toggle:hover {
+    border-color: currentColor;
 }
 
 .main {
