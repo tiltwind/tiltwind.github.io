@@ -32,7 +32,12 @@
 #menu .menu-toggle {
     position: sticky;
     top: 0;
-    padding: 6px 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    padding: 6px;
     border: 1px solid #d1d9e0;
     border-radius: 6px;
     background: var(--color-canvas-default, Canvas);
@@ -43,6 +48,10 @@
 
 #menu .menu-toggle:hover {
     border-color: currentColor;
+}
+
+#menu .menu-toggle[aria-expanded="false"] svg {
+    transform: rotate(180deg);
 }
 
 .main {

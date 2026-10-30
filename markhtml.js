@@ -107,7 +107,9 @@ function markmenu() {
     let toggle = ndom('button');
     toggle.type = 'button';
     toggle.className = 'menu-toggle';
-    toggle.textContent = '收起目录';
+    toggle.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m14 6-6 6 6 6"/></svg>';
+    toggle.setAttribute('aria-label', '收起目录');
+    toggle.title = '收起目录';
     toggle.setAttribute('aria-expanded', 'true');
     toggle.setAttribute('aria-controls', 'menu-content');
 
@@ -115,7 +117,9 @@ function markmenu() {
     content.id = 'menu-content';
     toggle.addEventListener('click', function () {
         content.hidden = !content.hidden;
-        toggle.textContent = content.hidden ? '展开目录' : '收起目录';
+        let label = content.hidden ? '展开目录' : '收起目录';
+        toggle.setAttribute('aria-label', label);
+        toggle.title = label;
         toggle.setAttribute('aria-expanded', String(!content.hidden));
     });
     menu.replaceChildren(toggle, content);
