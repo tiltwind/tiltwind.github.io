@@ -9,7 +9,53 @@
 <title>Memory · 随手记下</title>
 <style>
 :root{color-scheme:light;--paper:#f6f5f0;--ink:#283a33;--muted:#7b857c;--line:#dfE3da;--green:#355d46;--soft:#e8eee5;--red:#a33e35;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",sans-serif;color:var(--ink);background:var(--paper)}
-*{box-sizing:border-box}body{margin:0}button,input,textarea,select{font:inherit}button,a,input,select,textarea{-webkit-tap-highlight-color:transparent}button{cursor:pointer}button:disabled{cursor:default;opacity:.5}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--green);outline-offset:4px}button{color:inherit}a{color:var(--green);text-underline-offset:4px}main{max-width:680px;margin:auto;padding:30px 24px calc(36px + env(safe-area-inset-bottom))}header{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:44px}.brand{font-family:Georgia,serif;font-size:28px;letter-spacing:-1px}.brand span{color:var(--green)}.nav{display:flex;gap:8px}.quiet{border:1px solid transparent;background:transparent;padding:10px 12px;border-radius:30px;font-size:13px}.quiet:hover,.quiet[aria-pressed=true]{background:var(--soft)}.eyebrow{font-size:11px;letter-spacing:2px;color:var(--muted);text-transform:uppercase}.date{display:flex;align-items:center;gap:10px;margin-bottom:15px}.date:before{content:"";width:6px;height:6px;border-radius:50%;background:#688760}h1{font-size:30px;letter-spacing:-1px;font-weight:500;margin:0 0 12px}.intro{font-size:14px;color:var(--muted);line-height:1.8;margin:0 0 28px}.sheet{background:#fffefa;border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 7px 32px #293b3210}textarea{display:block;border:0;outline:none;resize:vertical;width:100%;min-height:300px;padding:24px;background:transparent;color:var(--ink);font-size:18px;line-height:1.9}textarea::placeholder{color:#a4aca2}textarea:focus-visible{outline-offset:-3px;border-radius:16px}.compose-footer{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:16px 20px;border-top:1px solid #eeeee6}.hint{font-size:12px;color:var(--muted);line-height:1.6}.primary{border:0;border-radius:12px;background:var(--green);color:white;padding:13px 20px;font-size:14px;white-space:nowrap}.primary:hover{background:#284a36}.status{font-size:13px;line-height:1.7;min-height:24px;margin:14px 2px;color:var(--muted);overflow-wrap:anywhere}.status.error{color:var(--red)}.connection{font-size:12px;color:var(--muted);display:flex;gap:8px;align-items:center;flex-wrap:wrap}.connection:before{content:"";display:inline-block;width:6px;height:6px;background:#93a58b;border-radius:50%}.section-title{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:38px 0 18px;padding-top:24px;border-top:1px solid var(--line)}h2{font-size:16px;font-weight:500;margin:0}.count{font-size:12px;color:var(--muted)}.record{padding:18px 0;border-bottom:1px solid var(--line)}.record time{font-variant-numeric:tabular-nums;font-size:12px;color:var(--muted)}.record p{white-space:pre-wrap;overflow-wrap:anywhere;font-size:15px;line-height:1.85;margin:8px 0}.badge{font-size:11px;margin-left:10px;color:var(--muted)}.empty{padding:32px 0;text-align:center;color:var(--muted);font-size:13px;line-height:1.8}.history-controls{display:flex;gap:10px;flex-wrap:wrap;margin:24px 0 8px}.history-controls input,.history-controls select{flex:1;min-width:130px}.markdown{white-space:pre-wrap;overflow-wrap:anywhere;font-family:inherit;font-size:14px;line-height:1.9;padding:24px;border:1px solid var(--line);border-radius:16px;background:#fffefa;min-height:200px}.path{font:12px ui-monospace,monospace;overflow-wrap:anywhere;color:var(--muted);margin:16px 0}dialog{border:1px solid var(--line);border-radius:20px;max-width:460px;width:calc(100% - 28px);max-height:90dvh;padding:26px;background:#fffefa;color:var(--ink)}dialog::backdrop{background:#25362e65;backdrop-filter:blur(4px)}.dialog-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}.dialog-head h2{font-size:21px}.close{border:0;background:transparent;padding:8px;font-size:22px;line-height:1}label{display:block;font-size:13px;margin:18px 0 7px}input,select{width:100%;padding:12px;border:1px solid var(--line);border-radius:10px;background:white;color:var(--ink);font-size:16px;min-width:0}.fields{display:grid;grid-template-columns:1fr 1fr;gap:12px}.help{font-size:12px;color:var(--muted);line-height:1.8}.help p{margin:8px 0}.actions{display:flex;gap:8px;justify-content:space-between;align-items:center;margin-top:22px}.danger{color:var(--red)}[hidden]{display:none!important}@media(max-width:480px){main{padding:22px 20px calc(28px + env(safe-area-inset-bottom))}header{margin-bottom:35px}h1{font-size:28px}.quiet{padding:10px}textarea{min-height:330px;padding:20px}.compose-footer{padding:14px}.primary{padding:13px 18px}}
+*{box-sizing:border-box}body{margin:0}button,input,textarea,select{font:inherit}button,a,input,select,textarea{-webkit-tap-highlight-color:transparent}button{cursor:pointer}button:disabled{cursor:default;opacity:.5}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--green);outline-offset:4px}button{color:inherit}a{color:var(--green);text-underline-offset:4px}main{max-width:680px;margin:auto;padding:30px 24px calc(36px + env(safe-area-inset-bottom))}header{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:22px}.brand{font-family:Georgia,serif;font-size:28px;letter-spacing:-1px}.brand span{color:var(--green)}.nav{display:flex;gap:8px}.quiet{border:1px solid transparent;background:transparent;padding:10px 12px;border-radius:30px;font-size:13px}.quiet:hover,.quiet[aria-pressed=true]{background:var(--soft)}.eyebrow{font-size:11px;letter-spacing:2px;color:var(--muted);text-transform:uppercase}.date{display:flex;align-items:center;gap:10px;margin-bottom:8px}.date:before{content:"";width:6px;height:6px;border-radius:50%;background:#688760}h1{font-size:30px;letter-spacing:-1px;font-weight:500;margin:0 0 12px}.intro{font-size:14px;color:var(--muted);line-height:1.8;margin:0 0 28px}.sheet{background:#fffefa;border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 7px 32px #293b3210}textarea{display:block;border:0;outline:none;resize:vertical;width:100%;height:clamp(130px, 33svh, 300px);padding:20px;background:transparent;color:var(--ink);font-size:18px;line-height:1.9}textarea::placeholder{color:#a4aca2}textarea:focus-visible{outline-offset:-3px;border-radius:16px}.compose-footer{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 14px;border-top:1px solid #eeeee6}.hint{font-size:12px;color:var(--muted);line-height:1.6}.primary{border:0;border-radius:12px;background:var(--green);color:white;padding:13px 20px;font-size:14px;white-space:nowrap}.primary:hover{background:#284a36}.status{font-size:13px;line-height:1.7;min-height:24px;margin:14px 2px;color:var(--muted);overflow-wrap:anywhere}.status.error{color:var(--red)}.connection{font-size:12px;color:var(--muted);display:flex;gap:8px;align-items:center;flex-wrap:wrap}.connection:before{content:"";display:inline-block;width:6px;height:6px;background:#93a58b;border-radius:50%}.section-title{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:38px 0 18px;padding-top:24px;border-top:1px solid var(--line)}h2{font-size:16px;font-weight:500;margin:0}.count{font-size:12px;color:var(--muted)}.record{padding:18px 0;border-bottom:1px solid var(--line)}.record time{font-variant-numeric:tabular-nums;font-size:12px;color:var(--muted)}.record p{white-space:pre-wrap;overflow-wrap:anywhere;font-size:15px;line-height:1.85;margin:8px 0}.badge{font-size:11px;margin-left:10px;color:var(--muted)}.empty{padding:32px 0;text-align:center;color:var(--muted);font-size:13px;line-height:1.8}.history-controls{display:flex;gap:10px;flex-wrap:wrap;margin:24px 0 8px}.history-controls input,.history-controls select{flex:1;min-width:130px}.markdown{white-space:pre-wrap;overflow-wrap:anywhere;font-family:inherit;font-size:14px;line-height:1.9;padding:24px;border:1px solid var(--line);border-radius:16px;background:#fffefa;min-height:200px}.path{font:12px ui-monospace,monospace;overflow-wrap:anywhere;color:var(--muted);margin:16px 0}dialog{border:1px solid var(--line);border-radius:20px;max-width:460px;width:calc(100% - 28px);max-height:90dvh;padding:26px;background:#fffefa;color:var(--ink)}dialog::backdrop{background:#25362e65;backdrop-filter:blur(4px)}.dialog-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}.dialog-head h2{font-size:21px}.close{border:0;background:transparent;padding:8px;font-size:22px;line-height:1}label{display:block;font-size:13px;margin:18px 0 7px}input,select{width:100%;padding:12px;border:1px solid var(--line);border-radius:10px;background:white;color:var(--ink);font-size:16px;min-width:0}.fields{display:grid;grid-template-columns:1fr 1fr;gap:12px}.help{font-size:12px;color:var(--muted);line-height:1.8}.help p{margin:8px 0}.actions{display:flex;gap:8px;justify-content:space-between;align-items:center;margin-top:22px}.danger{color:var(--red)}[hidden]{display:none!important}@media(max-width:480px){main{padding:22px 20px calc(28px + env(safe-area-inset-bottom))}header{margin-bottom:18px}h1{font-size:28px}.quiet{padding:10px}textarea{padding:16px}.primary{padding:13px 18px}}
+.activity {
+  margin: 12px 0;
+  padding: 10px 14px 8px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: #fffefa;
+}
+.activity-heading, .activity-axis {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+.activity-heading { font-size: 13px; }
+.activity-heading strong { color: var(--green); font-size: 17px; }
+.activity-axis, .activity-note { color: var(--muted); font-size: 11px; }
+.activity-note { text-align: right; }
+.activity-chart {
+  display: grid;
+  grid-template-columns: repeat(30, minmax(0, 1fr));
+  gap: 3px;
+  align-items: end;
+  height: 28px;
+  margin: 5px 0;
+}
+.activity-bar {
+  height: var(--bar-height);
+  border-radius: 3px;
+  background: #a9bda6;
+}
+.activity-bar.empty-day { background: var(--soft); }
+.activity-bar:last-child { background: var(--green); }
+.activity-bar.empty-day:last-child { background: #a9bda6; }
+.activity.rewarded { animation: reward 500ms ease-out; }
+@keyframes reward {
+  from { box-shadow: 0 0 0 3px #68936455; }
+  to { box-shadow: 0 0 0 0 #68936400; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .activity.rewarded { animation: none; }
+}
+@media (max-height: 550px) {
+  main { padding-top: 10px; }
+  header { margin-bottom: 8px; }
+  textarea { height: clamp(105px, 29svh, 160px); }
+}
 </style>
 </head>
 <body>
@@ -18,7 +64,11 @@
 <section id="capture">
 <div class="date eyebrow" id="today-label"></div>
 <h1>把这一刻，记下来。</h1>
-<p class="intro">一个念头、一点灵感，或今天的小事。<br>写下来，留给以后的自己。</p>
+<figure class="activity" id="activity">
+<figcaption class="activity-heading"><span>近 30 天 <strong id="activity-total">0</strong> 次</span><span class="activity-note" id="activity-note" role="status"></span></figcaption>
+<div class="activity-chart" id="activity-chart" role="img" aria-label="近 30 天每天的提交次数"></div>
+<div class="activity-axis" aria-hidden="true"><span id="activity-start"></span><span>今天</span></div>
+</figure>
 <div class="sheet"><textarea id="thought" aria-label="记录内容" placeholder="此刻，你在想什么？" maxlength="200000"></textarea><div class="compose-footer"><span class="hint" id="countdown">停笔 10 秒，自动提交</span><button class="primary" id="submit">记下来 ↑</button></div></div>
 <p class="status" id="status" role="status" aria-live="polite"></p>
 <div class="connection"><span id="destination">连接 GitHub，让灵感有处安放</span><button class="quiet" id="retry" hidden>马上重新同步</button></div>
@@ -53,6 +103,7 @@ const fileOf = day => `${day.slice(0,4)}/${day.slice(5,7)}/${day.replaceAll('-',
 const timeOf = d => `${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
 let config = null, state = {draft:'', entries:[]}, stateKey = '', busy = false, composing = false, lastEdit = 0, historyRequest = 0, listRequest = 0;
 let syncFailed = false;
+let rewardTimer;
 let storageOK = true, lastDay = dayOf(new Date());
 function readLocal(key, fallback) {
   try { const value = localStorage.getItem(key); return value ? JSON.parse(value) : fallback; }
@@ -71,15 +122,70 @@ function retainEntries(entries) {
     .slice(0, 10);
   return [...pending, ...recent];
 }
-function persist(saveDraft = false) {
+function activityDays() {
+  const today = new Date();
+  return Array.from({length: 30}, (_, index) => {
+    const date = new Date(today);
+    date.setDate(today.getDate() - 29 + index);
+    return dayOf(date);
+  });
+}
+function recentActivity(data) {
+  const counts = {};
+  const days = new Set(activityDays());
+  if (data.dailyCounts) {
+    for (const [day, count] of Object.entries(data.dailyCounts)) {
+      if (days.has(day) && Number.isSafeInteger(count) && count > 0) counts[day] = count;
+    }
+  } else {
+    for (const entry of data.entries) {
+      if (days.has(entry.day)) counts[entry.day] = (counts[entry.day] || 0) + 1;
+    }
+  }
+  return counts;
+}
+function renderActivity(reward = false) {
+  const days = activityDays();
+  const counts = days.map(day => state.dailyCounts[day] || 0);
+  const total = counts.reduce((sum, count) => sum + count, 0);
+  const max = Math.max(1, ...counts);
+  $('activity-total').textContent = total;
+  $('activity-start').textContent = days[0].slice(5).replace('-', '/');
+  const chart = $('activity-chart');
+  chart.setAttribute('aria-label', '每日提交次数。' + days.map((day, i) => `${day} ${counts[i]} 次`).join('，'));
+  chart.replaceChildren(...days.map((day, i) => {
+    const count = counts[i];
+    const bar = document.createElement('span');
+    bar.className = count ? 'activity-bar' : 'activity-bar empty-day';
+    bar.title = `${day} · ${count} 次`;
+    bar.style.setProperty('--bar-height', `${3 + count / max * 25}px`);
+    return bar;
+  }));
+  const note = $('activity-note');
+  note.textContent = reward ? '✦ 又记下一点，真好！' : `今天 ${counts.at(-1)} 次`;
+  const activity = $('activity');
+  activity.classList.remove('rewarded');
+  clearTimeout(rewardTimer);
+  if (reward) {
+    activity.classList.add('rewarded');
+    rewardTimer = setTimeout(() => {
+      activity.classList.remove('rewarded');
+      note.textContent = `今天 ${state.dailyCounts[dayOf(new Date())] || 0} 次`;
+    }, 2600);
+  }
+}
+function persist(saveDraft = false, submittedDay) {
   const latest = readLocal(stateKey, {draft:'', entries:[]});
   const merged = new Map(latest.entries.map(e => [e.id,e]));
   for (const e of state.entries) {
     if (merged.get(e.id)?.status !== 'synced') merged.set(e.id,e);
   }
   const entries = retainEntries([...merged.values()]);
-  if (!writeLocal(stateKey, {draft:saveDraft ? state.draft : latest.draft, entries})) return false;
+  const dailyCounts = recentActivity(latest);
+  if (submittedDay) dailyCounts[submittedDay] = (dailyCounts[submittedDay] || 0) + 1;
+  if (!writeLocal(stateKey, {draft:saveDraft ? state.draft : latest.draft, entries, dailyCounts})) return false;
   state.entries = entries;
+  state.dailyCounts = dailyCounts;
   return true;
 }
 function restore() {
@@ -87,10 +193,12 @@ function restore() {
   stateKey = `memory.data.v1:${identity(config)}`;
   state = readLocal(stateKey, {draft:'', entries:[]});
   if (!state || typeof state.draft !== 'string' || !Array.isArray(state.entries)) state = {draft:'', entries:[]};
+  state.dailyCounts = recentActivity(state);
   state.entries = retainEntries(state.entries);
   $('thought').value = state.draft;
   $('destination').textContent = config ? `${config.owner}/${config.repo} · ${config.branch}` : '连接 GitHub，让灵感有处安放';
   render();
+  renderActivity();
 }
 function render() {
   const pending = state.entries.filter(entry => entry.status !== 'synced');
@@ -216,8 +324,9 @@ async function submit() {
   const entry = {id:crypto.randomUUID(), text:state.draft, day:dayOf(now), time:timeOf(now), created:now.toISOString(), status:'pending'};
   // Save the queue before clearing the editor, including when offline.
   state.entries.push(entry); const draft = state.draft; state.draft = '';
-  if (!persist(true)) { state.entries.pop(); state.draft = draft; lastEdit = 0; return; }
+  if (!persist(true, entry.day)) { state.entries.pop(); state.draft = draft; lastEdit = 0; return; }
   $('thought').value = ''; lastEdit = 0; render();
+  renderActivity(true);
   $('countdown').textContent = '停笔 10 秒，自动提交';
   await sync({background:false});
 }
@@ -264,7 +373,7 @@ $('thought').addEventListener('compositionend', () => { composing = false; lastE
 $('thought').addEventListener('keydown', event => { if ((event.metaKey || event.ctrlKey) && event.key==='Enter') { event.preventDefault(); submit(); } });
 $('submit').onclick = submit; $('retry').onclick = () => sync();
 setInterval(() => {
-  const day = dayOf(new Date()); if (day !== lastDay) { lastDay = day; updateDate(); }
+  const day = dayOf(new Date()); if (day !== lastDay) { lastDay = day; updateDate(); persist(); renderActivity(); }
   if (!lastEdit || !state.draft.trim() || composing) return;
   const seconds = Math.max(0, Math.ceil((10000 - (Date.now()-lastEdit))/1000));
   $('countdown').textContent = config ? (seconds ? `停笔 ${seconds} 秒后自动提交` : '正在准备提交…') : '草稿已暂存 · 请先连接 GitHub';
