@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#f6f5f0">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; connect-src https://api.github.com; base-uri 'none'; form-action 'none'">
+<title>Memory · 随手记下</title>
+<style>
+:root{color-scheme:light;--paper:#f6f5f0;--ink:#283a33;--muted:#7b857c;--line:#dfE3da;--green:#355d46;--soft:#e8eee5;--red:#a33e35;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",sans-serif;color:var(--ink);background:var(--paper)}
+*{box-sizing:border-box}body{margin:0}button,input,textarea,select{font:inherit}button,a,input,select,textarea{-webkit-tap-highlight-color:transparent}button{cursor:pointer}button:disabled{cursor:default;opacity:.5}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--green);outline-offset:4px}button{color:inherit}a{color:var(--green);text-underline-offset:4px}main{max-width:680px;margin:auto;padding:30px 24px calc(36px + env(safe-area-inset-bottom))}header{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:44px}.brand{font-family:Georgia,serif;font-size:28px;letter-spacing:-1px}.brand span{color:var(--green)}.nav{display:flex;gap:8px}.quiet{border:1px solid transparent;background:transparent;padding:10px 12px;border-radius:30px;font-size:13px}.quiet:hover,.quiet[aria-pressed=true]{background:var(--soft)}.eyebrow{font-size:11px;letter-spacing:2px;color:var(--muted);text-transform:uppercase}.date{display:flex;align-items:center;gap:10px;margin-bottom:15px}.date:before{content:"";width:6px;height:6px;border-radius:50%;background:#688760}h1{font-size:30px;letter-spacing:-1px;font-weight:500;margin:0 0 12px}.intro{font-size:14px;color:var(--muted);line-height:1.8;margin:0 0 28px}.sheet{background:#fffefa;border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 7px 32px #293b3210}textarea{display:block;border:0;outline:none;resize:vertical;width:100%;min-height:300px;padding:24px;background:transparent;color:var(--ink);font-size:18px;line-height:1.9}textarea::placeholder{color:#a4aca2}textarea:focus-visible{outline-offset:-3px;border-radius:16px}.compose-footer{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:16px 20px;border-top:1px solid #eeeee6}.hint{font-size:12px;color:var(--muted);line-height:1.6}.primary{border:0;border-radius:12px;background:var(--green);color:white;padding:13px 20px;font-size:14px;white-space:nowrap}.primary:hover{background:#284a36}.status{font-size:13px;line-height:1.7;min-height:24px;margin:14px 2px;color:var(--muted);overflow-wrap:anywhere}.status.error{color:var(--red)}.connection{font-size:12px;color:var(--muted);display:flex;gap:8px;align-items:center;flex-wrap:wrap}.connection:before{content:"";display:inline-block;width:6px;height:6px;background:#93a58b;border-radius:50%}.section-title{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:38px 0 18px;padding-top:24px;border-top:1px solid var(--line)}h2{font-size:16px;font-weight:500;margin:0}.count{font-size:12px;color:var(--muted)}.record{padding:18px 0;border-bottom:1px solid var(--line)}.record time{font-variant-numeric:tabular-nums;font-size:12px;color:var(--muted)}.record p{white-space:pre-wrap;overflow-wrap:anywhere;font-size:15px;line-height:1.85;margin:8px 0}.badge{font-size:11px;margin-left:10px;color:var(--muted)}.empty{padding:32px 0;text-align:center;color:var(--muted);font-size:13px;line-height:1.8}.history-controls{display:flex;gap:10px;flex-wrap:wrap;margin:24px 0 8px}.history-controls input,.history-controls select{flex:1;min-width:130px}.markdown{white-space:pre-wrap;overflow-wrap:anywhere;font-family:inherit;font-size:14px;line-height:1.9;padding:24px;border:1px solid var(--line);border-radius:16px;background:#fffefa;min-height:200px}.path{font:12px ui-monospace,monospace;overflow-wrap:anywhere;color:var(--muted);margin:16px 0}dialog{border:1px solid var(--line);border-radius:20px;max-width:460px;width:calc(100% - 28px);max-height:90dvh;padding:26px;background:#fffefa;color:var(--ink)}dialog::backdrop{background:#25362e65;backdrop-filter:blur(4px)}.dialog-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}.dialog-head h2{font-size:21px}.close{border:0;background:transparent;padding:8px;font-size:22px;line-height:1}label{display:block;font-size:13px;margin:18px 0 7px}input,select{width:100%;padding:12px;border:1px solid var(--line);border-radius:10px;background:white;color:var(--ink);font-size:16px;min-width:0}.fields{display:grid;grid-template-columns:1fr 1fr;gap:12px}.help{font-size:12px;color:var(--muted);line-height:1.8}.help p{margin:8px 0}.actions{display:flex;gap:8px;justify-content:space-between;align-items:center;margin-top:22px}.danger{color:var(--red)}[hidden]{display:none!important}@media(max-width:480px){main{padding:22px 20px calc(28px + env(safe-area-inset-bottom))}header{margin-bottom:35px}h1{font-size:28px}.quiet{padding:10px}textarea{min-height:330px;padding:20px}.compose-footer{padding:14px}.primary{padding:13px 18px}}
+</style>
+</head>
+<body>
+<main>
+<header><div class="brand">memory<span>.</span></div><nav class="nav" aria-label="导航"><button class="quiet" id="history-toggle" aria-pressed="false">历史记录</button><button class="quiet" id="settings-open">设置 ↗</button></nav></header>
+<section id="capture">
+<div class="date eyebrow" id="today-label"></div>
+<h1>把这一刻，记下来。</h1>
+<p class="intro">一个念头、一点灵感，或今天的小事。<br>写下来，留给以后的自己。</p>
+<div class="sheet"><textarea id="thought" aria-label="记录内容" placeholder="此刻，你在想什么？" maxlength="200000"></textarea><div class="compose-footer"><span class="hint" id="countdown">停笔 10 秒，自动提交</span><button class="primary" id="submit">记下来 ↑</button></div></div>
+<p class="status" id="status" role="status" aria-live="polite"></p>
+<div class="connection"><span id="destination">连接 GitHub，让灵感有处安放</span><button class="quiet" id="retry" hidden>重试同步</button></div>
+<div class="section-title"><h2>今天的记忆</h2><span class="count" id="record-count">0 条</span></div>
+<div id="records"></div>
+</section>
+<section id="history" hidden>
+<div class="eyebrow">YOUR MEMORIES</div><h1 style="margin-top:15px">回到某一天。</h1><p class="intro">从 GitHub 私有仓库读取，按日期翻阅记忆。</p>
+<div class="history-controls"><input type="date" id="history-date" aria-label="历史日期"><button class="primary" id="load-history">读取</button></div>
+<div class="history-controls"><select id="history-files" aria-label="所选月份的文件"><option value="">选择本月已有记录</option></select><button class="quiet" id="refresh-files">刷新本月列表</button></div>
+<div class="path" id="history-path"></div><p class="status" id="history-status" role="status"></p><pre class="markdown" id="history-content">选择日期，读取那一天的记忆。</pre>
+</section>
+</main>
+<dialog id="settings" aria-labelledby="settings-title">
+<form id="settings-form">
+<div class="dialog-head"><h2 id="settings-title">连接你的 GitHub</h2><button type="button" class="close" id="settings-close" aria-label="关闭设置">×</button></div>
+<p class="help">内容直接保存到你选择的仓库。建议使用专门的私有仓库；新建仓库时勾选添加 README，以初始化默认分支。</p>
+<div class="fields"><div><label for="owner">账号 / 组织</label><input id="owner" required placeholder="your-name" autocomplete="off" pattern="[A-Za-z0-9\-]+"></div><div><label for="repo">仓库名称</label><input id="repo" required placeholder="my-memory" autocomplete="off" pattern="[A-Za-z0-9_.\-]+"></div></div>
+<label for="branch">分支（留空使用默认分支）</label><input id="branch" placeholder="默认分支" autocomplete="off">
+<label for="token">Personal Access Token</label><input id="token" type="password" required placeholder="粘贴 GitHub Token" autocomplete="off" spellcheck="false">
+<div class="help"><p><a id="token-link" href="https://github.com/settings/personal-access-tokens/new?name=Memory&contents=write" target="_blank" rel="noopener noreferrer">生成一个 Token ↗</a> · <a href="https://github.com/new?visibility=private" target="_blank" rel="noopener noreferrer">新建私有仓库 ↗</a></p><p>生成时选择目标仓库，授予 Contents 的 Read and write 权限。完成后复制 Token 回来粘贴。纯静态页面不会自动获取 Token。</p><p>Token 和配置仅保存在当前浏览器 Local Storage；请求时仅发送给 GitHub API。不要在共用设备上保存。草稿与待同步内容会本地保留；已同步缓存仅保留当天。</p></div>
+<p class="status" id="settings-status" role="status"></p><div class="actions"><button type="button" class="quiet danger" id="disconnect">清除连接</button><button type="submit" class="primary" id="save-settings">验证并保存</button></div>
+</form>
+</dialog>
+<script>
+'use strict';
+const $ = id => document.getElementById(id);
+const CONFIG_KEY = 'memory.github.v1';
+const pad = n => String(n).padStart(2, '0');
+const dayOf = d => `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+const fileOf = day => `${day.slice(0,4)}/${day.slice(5,7)}/${day.replaceAll('-','')}.md`;
+const timeOf = d => `${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
+let config = null, state = {draft:'', entries:[]}, stateKey = '', busy = false, composing = false, lastEdit = 0, historyRequest = 0, listRequest = 0;
+let storageOK = true, lastDay = dayOf(new Date());
+function readLocal(key, fallback) {
+  try { const value = localStorage.getItem(key); return value ? JSON.parse(value) : fallback; }
+  catch { storageOK = false; return fallback; }
+}
+function writeLocal(key, value) {
+  try { localStorage.setItem(key, JSON.stringify(value)); storageOK = true; return true; }
+  catch { storageOK = false; setStatus('浏览器无法保存本地数据，请允许本地存储或释放空间。内容仍在输入框中。', true); return false; }
+}
+function setStatus(message, error = false) { $('status').textContent = message; $('status').classList.toggle('error', error); }
+function identity(c) { return c ? `${c.owner.toLowerCase()}/${c.repo.toLowerCase()}@${c.branch}` : 'unconfigured'; }
+function persist(saveDraft = false) {
+  const latest = readLocal(stateKey, {draft:'', entries:[]});
+  const merged = new Map(latest.entries.map(e => [e.id,e]));
+  for (const e of state.entries) {
+    if (merged.get(e.id)?.status !== 'synced') merged.set(e.id,e);
+  }
+  const entries = [...merged.values()].filter(e => e.status !== 'synced' || e.day === dayOf(new Date()));
+  return writeLocal(stateKey, {draft:saveDraft ? state.draft : latest.draft, entries});
+}
+function prune() { state.entries = state.entries.filter(e => e.status !== 'synced' || e.day === dayOf(new Date())); }
+function restore() {
+  stateKey = `memory.data.v1:${identity(config)}`;
+  state = readLocal(stateKey, {draft:'', entries:[]});
+  if (!state || typeof state.draft !== 'string' || !Array.isArray(state.entries)) state = {draft:'', entries:[]};
+  prune(); $('thought').value = state.draft;
+  $('destination').textContent = config ? `${config.owner}/${config.repo} · ${config.branch}` : '连接 GitHub，让灵感有处安放';
+  render();
+}
+function render() {
+  const entries = state.entries.filter(e => e.day === dayOf(new Date())).slice().reverse();
+  $('record-count').textContent = `${entries.length} 条`;
+  $('records').replaceChildren();
+  if (!entries.length) { const p = document.createElement('p'); p.className = 'empty'; p.textContent = '今天的故事，从这里开始。'; $('records').append(p); }
+  for (const entry of entries) {
+    const card = document.createElement('article'); card.className = 'record';
+    const time = document.createElement('time'); time.textContent = entry.time; time.dateTime = entry.created;
+    const badge = document.createElement('span'); badge.className = 'badge'; badge.textContent = entry.status === 'synced' ? '已存入 GitHub' : '待同步';
+    const content = document.createElement('p'); content.textContent = entry.text;
+    card.append(time, badge, content); $('records').append(card);
+  }
+  const pending = state.entries.filter(e => e.status !== 'synced').length;
+  $('retry').hidden = !pending; $('retry').disabled = busy;
+  $('submit').disabled = !state.draft.trim() || composing;
+  if (pending && !busy) setStatus(`有 ${pending} 条记忆待同步（含其他日期），点击「重试同步」继续。`);
+}
+function apiBase(c) { return `https://api.github.com/repos/${encodeURIComponent(c.owner)}/${encodeURIComponent(c.repo)}`; }
+async function api(c, path, options = {}) {
+  const controller = new AbortController(); const timeout = setTimeout(() => controller.abort(), 25000);
+  try {
+    const response = await fetch(apiBase(c) + path, {...options, cache:'no-store', signal:controller.signal, headers:{Accept:'application/vnd.github+json', Authorization:`Bearer ${c.token}`, 'X-GitHub-Api-Version':'2022-11-28', ...options.headers}});
+    if (!response.ok) {
+      const error = new Error(response.status === 401 ? 'Token 无效或已过期，请重新配置。' : response.status === 403 ? '没有访问权限或触发请求限制，请检查 Token 权限、组织授权和 GitHub 请求限额。' : response.status === 404 ? '仓库、分支或文件不存在，或 Token 无权访问。' : response.status === 409 ? '文件已被其他提交更新，请重试。' : response.status === 422 ? 'GitHub 未接受此提交，请检查分支、写权限或仓库规则。' : `GitHub 请求失败（${response.status}）。`);
+      error.status = response.status; throw error;
+    }
+    return await response.json();
+  } catch (error) { if (error.name === 'AbortError') throw new Error('请求超时，内容已保留，可稍后重试。'); if (error instanceof TypeError) throw new Error('无法连接 GitHub，请检查网络后重试。'); throw error; }
+  finally { clearTimeout(timeout); }
+}
+const encode = text => { const bytes = new TextEncoder().encode(text); let binary=''; for (let i=0;i<bytes.length;i+=8192) binary += String.fromCharCode(...bytes.subarray(i,i+8192)); return btoa(binary); };
+const decode = text => new TextDecoder('utf-8', {fatal:true}).decode(Uint8Array.from(atob(text.replace(/\s/g,'')), c => c.charCodeAt(0)));
+function contentsPath(path, c) { return `/contents/${path.split('/').map(encodeURIComponent).join('/')}?ref=${encodeURIComponent(c.branch)}`; }
+async function readFile(c, path) {
+  const file = await api(c, contentsPath(path,c));
+  if (file.type !== 'file' || file.encoding !== 'base64' || typeof file.content !== 'string') throw new Error('无法读取文件：格式不受支持或文件过大。');
+  return {sha:file.sha, text:decode(file.content)};
+}
+async function appendEntry(c, entry) {
+  const path = fileOf(entry.day), marker = `<!-- memory:${entry.id} -->`;
+  for (let attempt=0; attempt<4; attempt++) {
+    let file = {text:'', sha:undefined};
+    try { file = await readFile(c, path); } catch (error) { if (error.status !== 404) throw error; }
+    if (file.text.includes(marker)) return; // A timed-out PUT may already have succeeded.
+    const block = `${marker}\n1. 时间：${entry.time}\n2. 提交内容：\n${entry.text.split('\n').map(line => '   '+line).join('\n')}\n`;
+    const text = file.text + (file.text ? (file.text.endsWith('\n') ? '\n' : '\n\n') : '') + block;
+    try {
+      await api(c, `/contents/${path}`, {method:'PUT', headers:{'Content-Type':'application/json'}, body:JSON.stringify({message:`memory: ${entry.day} ${entry.time}`, content:encode(text), branch:c.branch, ...(file.sha ? {sha:file.sha} : {})})});
+      return;
+    } catch (error) { if (![409,422].includes(error.status) || attempt===3) throw error; }
+  }
+}
+async function sync() {
+  if (busy || !config) return;
+  busy = true; $('settings-open').disabled = true; $('save-settings').disabled = true; $('disconnect').disabled = true; render();
+  const c = {...config};
+  try {
+    const work = async () => {
+      // Merge the latest local queue after acquiring the same-repository tab lock.
+      const latest = readLocal(stateKey, state);
+      const known = new Map(latest.entries.map(e => [e.id,e]));
+      for (const entry of state.entries) if (!known.has(entry.id)) known.set(entry.id, entry);
+      state.entries = [...known.values()];
+      for (const entry of state.entries) {
+        if (entry.status === 'synced') continue;
+        setStatus('正在存入 GitHub…');
+        await appendEntry(c, entry);
+        entry.status = 'synced';
+        if (!persist()) throw new Error('GitHub 已收到记录，但本地缓存保存失败。重新加载后重试会自动检查重复记录。');
+        render();
+      }
+    };
+    if (navigator.locks) await navigator.locks.request(`memory:${identity(c)}`, work); else await work();
+    setStatus('已存入 GitHub，灵感好好收着了。');
+    window.scrollTo({top:0, behavior:matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth'});
+  } catch (error) { setStatus(`${error.message} 未同步记录已保留，点击「重试同步」。`, true); }
+  finally { busy = false; $('settings-open').disabled = false; $('save-settings').disabled = false; $('disconnect').disabled = false; $('retry').disabled = false; }
+}
+async function submit() {
+  if (composing || !state.draft.trim()) return;
+  if (!config) { openSettings(); setStatus('先连接 GitHub；草稿已保存在此浏览器。'); lastEdit = 0; return; }
+  const now = new Date();
+  const entry = {id:crypto.randomUUID(), text:state.draft, day:dayOf(now), time:timeOf(now), created:now.toISOString(), status:'pending'};
+  // Save the queue before clearing the editor, including when offline.
+  state.entries.push(entry); const draft = state.draft; state.draft = '';
+  if (!persist(true)) { state.entries.pop(); state.draft = draft; lastEdit = 0; return; }
+  $('thought').value = ''; lastEdit = 0; render();
+  $('countdown').textContent = '停笔 10 秒，自动提交';
+  await sync();
+}
+function openSettings() {
+  if (busy || $('settings').open) return;
+  for (const field of ['owner','repo','branch','token']) $(field).value = config?.[field] || '';
+  $('settings-status').textContent = ''; updateTokenLink(); $('settings').showModal();
+}
+function updateTokenLink() { const url = new URL('https://github.com/settings/personal-access-tokens/new'); url.searchParams.set('name','Memory'); url.searchParams.set('contents','write'); if ($('owner').value.trim()) url.searchParams.set('target_name', $('owner').value.trim()); $('token-link').href = url.href; }
+$('owner').addEventListener('input',updateTokenLink);
+$('settings-open').onclick = openSettings; $('settings-close').onclick = () => $('settings').close();
+$('settings-form').addEventListener('submit', async event => {
+  event.preventDefault(); if (busy) return;
+  const candidate = Object.fromEntries(['owner','repo','branch','token'].map(key => [key,$(key).value.trim()]));
+  $('save-settings').disabled = true; $('settings-close').disabled = true; $('disconnect').disabled = true; $('settings-status').textContent = '正在验证仓库和分支…';
+  try {
+    const repo = await api(candidate, '');
+    candidate.branch ||= repo.default_branch;
+    if (repo.permissions?.push === false || repo.archived || repo.disabled) throw new Error('该仓库不可写，请选择可写仓库。');
+    try { await api(candidate, `/contents?ref=${encodeURIComponent(candidate.branch)}`); }
+    catch (error) {
+      if (error.status === 404) throw new Error('无法读取目标分支。请确认分支存在、Token 有 Contents 权限；空仓库请先添加 README。');
+      throw error;
+    }
+    const oldIdentity = identity(config); const oldState = state;
+    if (!writeLocal(CONFIG_KEY, candidate)) throw new Error('配置无法保存，请允许浏览器使用 Local Storage。');
+    config = candidate; restore(); resetHistory();
+    if (oldIdentity === 'unconfigured' && oldState.draft && !state.draft) { state.draft = oldState.draft; $('thought').value = state.draft; if (persist(true)) { try { localStorage.removeItem('memory.data.v1:unconfigured'); } catch {} } }
+    $('settings').close(); setStatus('连接成功。Token 需要对该仓库具有 Contents 读写权限。'); lastEdit = state.draft.trim() ? Date.now() : 0; render();
+    if (!$('history').hidden) listFiles();
+    if (state.entries.some(e => e.status !== 'synced')) sync();
+  } catch (error) { $('settings-status').textContent = error.message; }
+  finally { $('save-settings').disabled = busy; $('settings-close').disabled = false; $('disconnect').disabled = busy; }
+});
+$('disconnect').onclick = () => {
+  if (busy) return;
+  try { localStorage.removeItem(CONFIG_KEY); } catch { $('settings-status').textContent = '无法清除本地配置。'; return; }
+  config = null; restore(); $('token').value=''; $('settings').close(); resetHistory();
+  setStatus('已清除连接和 Token。原仓库的本地草稿、待同步内容仍保留，重新连接后可恢复。');
+};
+$('thought').addEventListener('input', () => { state.draft = $('thought').value; lastEdit = state.draft.trim() ? Date.now() : 0; persist(true); if (!lastEdit) $('countdown').textContent = '停笔 10 秒，自动提交'; $('submit').disabled = !state.draft.trim() || composing; });
+$('thought').addEventListener('compositionstart', () => { composing = true; });
+$('thought').addEventListener('compositionend', () => { composing = false; lastEdit = Date.now(); $('submit').disabled = !state.draft.trim(); });
+$('thought').addEventListener('keydown', event => { if ((event.metaKey || event.ctrlKey) && event.key==='Enter') { event.preventDefault(); submit(); } });
+$('submit').onclick = submit; $('retry').onclick = sync;
+setInterval(() => {
+  const day = dayOf(new Date()); if (day !== lastDay) { lastDay = day; prune(); persist(); render(); updateDate(); }
+  if (!lastEdit || !state.draft.trim() || composing) return;
+  const seconds = Math.max(0, Math.ceil((10000 - (Date.now()-lastEdit))/1000));
+  $('countdown').textContent = config ? (seconds ? `停笔 ${seconds} 秒后自动提交` : '正在准备提交…') : '草稿已暂存 · 请先连接 GitHub';
+  if (!seconds) { lastEdit = 0; submit(); }
+}, 250);
+$('history-toggle').onclick = () => {
+  const show = $('history').hidden; $('history').hidden = !show; $('capture').hidden = show; $('history-toggle').textContent = show ? '返回记录' : '历史记录'; $('history-toggle').setAttribute('aria-pressed', String(show));
+  if (show) { if (config) listFiles(); else $('history-status').textContent = '请先在设置中连接 GitHub。'; }
+};
+function resetHistory() {
+  historyRequest++; listRequest++;
+  $('history-content').textContent = '选择日期，读取那一天的记忆。';
+  $('history-files').replaceChildren(new Option('选择本月已有记录',''));
+  $('history-path').textContent = ''; $('history-status').textContent = '';
+}
+async function loadHistory() {
+  if (!config) { openSettings(); return; }
+  const date = $('history-date').value; if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) return;
+  const c = {...config}, request = ++historyRequest; $('history-path').textContent = fileOf(date); $('history-status').textContent = '正在读取 GitHub…'; $('history-content').textContent = '';
+  try { const file = await readFile(c,fileOf(date)); if (request !== historyRequest) return; $('history-content').textContent = file.text || '这一天的文件是空的。'; $('history-status').textContent = '已从 GitHub 读取'; }
+  catch (error) { if (request !== historyRequest) return; $('history-status').textContent = error.status===404 ? '这一天没有记录，或 Token 无权读取此路径。' : error.message; }
+}
+async function listFiles() {
+  if (!config) { openSettings(); return; }
+  const c = {...config}, request = ++listRequest, date = $('history-date').value;
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) return;
+  $('history-files').replaceChildren(new Option('正在读取本月列表…',''));
+  try {
+    const files = await api(c, contentsPath(`${date.slice(0,4)}/${date.slice(5,7)}`,c)); if (request !== listRequest) return;
+    if (!Array.isArray(files)) throw new Error('月份路径不是目录。');
+    const days = files.filter(f => f.type === 'file' && /^\d{8}\.md$/.test(f.name) && f.name.startsWith(date.replaceAll('-','').slice(0,6))).sort((a,b) => b.name.localeCompare(a.name));
+    $('history-files').replaceChildren(new Option(days.length ? '选择本月已有记录' : '本月暂无记录',''));
+    for (const file of days) { const name = file.name.slice(0,8); const day = `${name.slice(0,4)}-${name.slice(4,6)}-${name.slice(6,8)}`; $('history-files').add(new Option(day,day)); }
+  } catch (error) { if (request !== listRequest) return; $('history-files').replaceChildren(new Option(error.status===404 ? '本月无记录或没有读取权限' : '读取失败，请刷新重试','')); $('history-status').textContent = error.status === 404 ? '可选择其他日期或月份读取记录。' : error.message; }
+}
+$('load-history').onclick = loadHistory; $('refresh-files').onclick = listFiles;
+$('history-date').onchange = () => { loadHistory(); listFiles(); };
+$('history-files').onchange = () => { if ($('history-files').value) { $('history-date').value = $('history-files').value; loadHistory(); } };
+function updateDate() { $('today-label').textContent = new Intl.DateTimeFormat('zh-CN',{month:'long',day:'numeric',weekday:'long'}).format(new Date()); }
+window.addEventListener('online', () => { if (state.entries.some(e => e.status !== 'synced')) sync(); });
+config = readLocal(CONFIG_KEY,null);
+if (config && !['owner','repo','branch','token'].every(key => typeof config[key] === 'string' && config[key])) config = null;
+restore(); if (config && storageOK) persist(); updateDate(); $('history-date').value = dayOf(new Date());
+if (!storageOK) setStatus('无法读取本地存储，请检查浏览器设置。',true);
+else if (!config) openSettings();
+else if (state.entries.some(e => e.status !== 'synced')) sync();
+// Restored drafts wait for an explicit edit or submission.
+</script>
+</body>
+</html>
