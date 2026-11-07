@@ -21,8 +21,8 @@
 <p class="intro">一个念头、一点灵感，或今天的小事。<br>写下来，留给以后的自己。</p>
 <div class="sheet"><textarea id="thought" aria-label="记录内容" placeholder="此刻，你在想什么？" maxlength="200000"></textarea><div class="compose-footer"><span class="hint" id="countdown">停笔 10 秒，自动提交</span><button class="primary" id="submit">记下来 ↑</button></div></div>
 <p class="status" id="status" role="status" aria-live="polite"></p>
-<div class="connection"><span id="destination">连接 GitHub，让灵感有处安放</span><button class="quiet" id="retry" hidden>重试同步</button></div>
-<div class="section-title"><h2>今天的记忆</h2><span class="count" id="record-count">0 条</span></div>
+<div class="connection"><span id="destination">连接 GitHub，让灵感有处安放</span><button class="quiet" id="retry" hidden>马上重新同步</button></div>
+<div class="section-title"><h2>本地记录</h2><span class="count" id="record-count">0 条</span></div>
 <div id="records"></div>
 </section>
 <section id="history" hidden>
@@ -39,7 +39,7 @@
 <div class="fields"><div><label for="owner">账号 / 组织</label><input id="owner" required placeholder="your-name" autocomplete="off" pattern="[A-Za-z0-9\-]+"></div><div><label for="repo">仓库名称</label><input id="repo" required placeholder="my-memory" autocomplete="off" pattern="[A-Za-z0-9_.\-]+"></div></div>
 <label for="branch">分支（留空使用默认分支）</label><input id="branch" placeholder="默认分支" autocomplete="off">
 <label for="token">Personal Access Token</label><input id="token" type="password" required placeholder="粘贴 GitHub Token" autocomplete="off" spellcheck="false">
-<div class="help"><p><a id="token-link" href="https://github.com/settings/personal-access-tokens/new?name=Memory&contents=write" target="_blank" rel="noopener noreferrer">生成一个 Token ↗</a> · <a href="https://github.com/new?visibility=private" target="_blank" rel="noopener noreferrer">新建私有仓库 ↗</a></p><p>生成时选择目标仓库，授予 Contents 的 Read and write 权限。完成后复制 Token 回来粘贴。纯静态页面不会自动获取 Token。</p><p>Token 和配置仅保存在当前浏览器 Local Storage；请求时仅发送给 GitHub API。不要在共用设备上保存。草稿与待同步内容会本地保留；已同步缓存仅保留当天。</p></div>
+<div class="help"><p><a id="token-link" href="https://github.com/settings/personal-access-tokens/new?name=Memory&contents=write" target="_blank" rel="noopener noreferrer">生成一个 Token ↗</a> · <a href="https://github.com/new?visibility=private" target="_blank" rel="noopener noreferrer">新建私有仓库 ↗</a></p><p>生成时选择目标仓库，授予 Contents 的 Read and write 权限。完成后复制 Token 回来粘贴。纯静态页面不会自动获取 Token。</p><p>Token 和配置仅保存在当前浏览器 Local Storage；请求时仅发送给 GitHub API。不要在共用设备上保存。草稿和全部待同步记录保存在本机，已同步记录只保留最近 10 条。更多记录可在「历史记录」中查看。</p></div>
 <p class="status" id="settings-status" role="status"></p><div class="actions"><button type="button" class="quiet danger" id="disconnect">清除连接</button><button type="submit" class="primary" id="save-settings">验证并保存</button></div>
 </form>
 </dialog>
@@ -52,6 +52,7 @@ const dayOf = d => `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())
 const fileOf = day => `${day.slice(0,4)}/${day.slice(5,7)}/${day.replaceAll('-','')}.md`;
 const timeOf = d => `${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
 let config = null, state = {draft:'', entries:[]}, stateKey = '', busy = false, composing = false, lastEdit = 0, historyRequest = 0, listRequest = 0;
+let syncFailed = false;
 let storageOK = true, lastDay = dayOf(new Date());
 function readLocal(key, fallback) {
   try { const value = localStorage.getItem(key); return value ? JSON.parse(value) : fallback; }
@@ -63,40 +64,51 @@ function writeLocal(key, value) {
 }
 function setStatus(message, error = false) { $('status').textContent = message; $('status').classList.toggle('error', error); }
 function identity(c) { return c ? `${c.owner.toLowerCase()}/${c.repo.toLowerCase()}@${c.branch}` : 'unconfigured'; }
+function retainEntries(entries) {
+  const pending = entries.filter(entry => entry.status !== 'synced');
+  const recent = entries.filter(entry => entry.status === 'synced')
+    .sort((a, b) => b.created.localeCompare(a.created))
+    .slice(0, 10);
+  return [...pending, ...recent];
+}
 function persist(saveDraft = false) {
   const latest = readLocal(stateKey, {draft:'', entries:[]});
   const merged = new Map(latest.entries.map(e => [e.id,e]));
   for (const e of state.entries) {
     if (merged.get(e.id)?.status !== 'synced') merged.set(e.id,e);
   }
-  const entries = [...merged.values()].filter(e => e.status !== 'synced' || e.day === dayOf(new Date()));
-  return writeLocal(stateKey, {draft:saveDraft ? state.draft : latest.draft, entries});
+  const entries = retainEntries([...merged.values()]);
+  if (!writeLocal(stateKey, {draft:saveDraft ? state.draft : latest.draft, entries})) return false;
+  state.entries = entries;
+  return true;
 }
-function prune() { state.entries = state.entries.filter(e => e.status !== 'synced' || e.day === dayOf(new Date())); }
 function restore() {
+  syncFailed = false;
   stateKey = `memory.data.v1:${identity(config)}`;
   state = readLocal(stateKey, {draft:'', entries:[]});
   if (!state || typeof state.draft !== 'string' || !Array.isArray(state.entries)) state = {draft:'', entries:[]};
-  prune(); $('thought').value = state.draft;
+  state.entries = retainEntries(state.entries);
+  $('thought').value = state.draft;
   $('destination').textContent = config ? `${config.owner}/${config.repo} · ${config.branch}` : '连接 GitHub，让灵感有处安放';
   render();
 }
 function render() {
-  const entries = state.entries.filter(e => e.day === dayOf(new Date())).slice().reverse();
-  $('record-count').textContent = `${entries.length} 条`;
+  const pending = state.entries.filter(entry => entry.status !== 'synced');
+  const synced = state.entries.filter(entry => entry.status === 'synced');
+  const entries = [...pending.slice().reverse(), ...synced];
+  $('record-count').textContent = `${pending.length} 条待同步 · ${synced.length} 条已同步`;
   $('records').replaceChildren();
   if (!entries.length) { const p = document.createElement('p'); p.className = 'empty'; p.textContent = '今天的故事，从这里开始。'; $('records').append(p); }
   for (const entry of entries) {
     const card = document.createElement('article'); card.className = 'record';
-    const time = document.createElement('time'); time.textContent = entry.time; time.dateTime = entry.created;
+    const time = document.createElement('time'); time.textContent = `${entry.day} ${entry.time}`; time.dateTime = entry.created;
     const badge = document.createElement('span'); badge.className = 'badge'; badge.textContent = entry.status === 'synced' ? '已存入 GitHub' : '待同步';
     const content = document.createElement('p'); content.textContent = entry.text;
     card.append(time, badge, content); $('records').append(card);
   }
-  const pending = state.entries.filter(e => e.status !== 'synced').length;
-  $('retry').hidden = !pending; $('retry').disabled = busy;
+  $('retry').hidden = !syncFailed || !pending.length;
+  $('retry').disabled = busy;
   $('submit').disabled = !state.draft.trim() || composing;
-  if (pending && !busy) setStatus(`有 ${pending} 条记忆待同步（含其他日期），点击「重试同步」继续。`);
 }
 function apiBase(c) { return `https://api.github.com/repos/${encodeURIComponent(c.owner)}/${encodeURIComponent(c.repo)}`; }
 async function api(c, path, options = {}) {
@@ -148,31 +160,54 @@ async function appendEntry(c, entry) {
     } catch (error) { if (![409,422].includes(error.status) || attempt===3) throw error; }
   }
 }
-async function sync() {
+async function sync({background = true} = {}) {
   if (busy || !config) return;
+  if (navigator.onLine === false) {
+    syncFailed = true;
+    setStatus('记录已保存在本机，网络恢复后会自动同步。');
+    render();
+    return;
+  }
+  syncFailed = false;
   busy = true; $('settings-open').disabled = true; $('save-settings').disabled = true; $('disconnect').disabled = true; render();
   const c = {...config};
+  let syncedCount = 0;
   try {
     const work = async () => {
       // Merge the latest local queue after acquiring the same-repository tab lock.
       const latest = readLocal(stateKey, state);
       const known = new Map(latest.entries.map(e => [e.id,e]));
       for (const entry of state.entries) if (!known.has(entry.id)) known.set(entry.id, entry);
-      state.entries = [...known.values()];
-      for (const entry of state.entries) {
-        if (entry.status === 'synced') continue;
-        setStatus('正在存入 GitHub…');
+      state.entries = retainEntries([...known.values()]);
+      let entry;
+      while ((entry = state.entries.find(item => item.status !== 'synced'))) {
+        if (!background) setStatus('正在存入 GitHub…');
         await appendEntry(c, entry);
-        entry.status = 'synced';
-        if (!persist()) throw new Error('GitHub 已收到记录，但本地缓存保存失败。重新加载后重试会自动检查重复记录。');
+        const current = state.entries.find(item => item.id === entry.id);
+        current.status = 'synced';
+        if (!persist()) {
+          current.status = 'pending';
+          throw new Error('GitHub 已收到记录，但本地缓存保存失败。重试会自动检查重复记录。');
+        }
+        syncedCount++;
         render();
       }
     };
     if (navigator.locks) await navigator.locks.request(`memory:${identity(c)}`, work); else await work();
-    setStatus('已存入 GitHub，灵感好好收着了。');
-    window.scrollTo({top:0, behavior:matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth'});
-  } catch (error) { setStatus(`${error.message} 未同步记录已保留，点击「重试同步」。`, true); }
-  finally { busy = false; $('settings-open').disabled = false; $('save-settings').disabled = false; $('disconnect').disabled = false; $('retry').disabled = false; }
+    if (syncedCount) setStatus(background ? `已同步 ${syncedCount} 条暂存记录。` : '已存入 GitHub。');
+    if (!background && syncedCount) {
+      window.scrollTo({top:0, behavior:matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth'});
+    }
+  } catch (error) {
+    syncFailed = true;
+    setStatus(`${error.message} 待同步记录已保留。`, true);
+  } finally {
+    busy = false;
+    $('settings-open').disabled = false;
+    $('save-settings').disabled = false;
+    $('disconnect').disabled = false;
+    render();
+  }
 }
 async function submit() {
   if (composing || !state.draft.trim()) return;
@@ -184,7 +219,7 @@ async function submit() {
   if (!persist(true)) { state.entries.pop(); state.draft = draft; lastEdit = 0; return; }
   $('thought').value = ''; lastEdit = 0; render();
   $('countdown').textContent = '停笔 10 秒，自动提交';
-  await sync();
+  await sync({background:false});
 }
 function openSettings() {
   if (busy || $('settings').open) return;
@@ -227,9 +262,9 @@ $('thought').addEventListener('input', () => { state.draft = $('thought').value;
 $('thought').addEventListener('compositionstart', () => { composing = true; });
 $('thought').addEventListener('compositionend', () => { composing = false; lastEdit = Date.now(); $('submit').disabled = !state.draft.trim(); });
 $('thought').addEventListener('keydown', event => { if ((event.metaKey || event.ctrlKey) && event.key==='Enter') { event.preventDefault(); submit(); } });
-$('submit').onclick = submit; $('retry').onclick = sync;
+$('submit').onclick = submit; $('retry').onclick = () => sync();
 setInterval(() => {
-  const day = dayOf(new Date()); if (day !== lastDay) { lastDay = day; prune(); persist(); render(); updateDate(); }
+  const day = dayOf(new Date()); if (day !== lastDay) { lastDay = day; updateDate(); }
   if (!lastEdit || !state.draft.trim() || composing) return;
   const seconds = Math.max(0, Math.ceil((10000 - (Date.now()-lastEdit))/1000));
   $('countdown').textContent = config ? (seconds ? `停笔 ${seconds} 秒后自动提交` : '正在准备提交…') : '草稿已暂存 · 请先连接 GitHub';
