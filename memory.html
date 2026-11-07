@@ -120,15 +120,30 @@ async function readFile(c, path) {
   return {sha:file.sha, text:decode(file.content)};
 }
 async function appendEntry(c, entry) {
-  const path = fileOf(entry.day), marker = `<!-- memory:${entry.id} -->`;
+  const path = fileOf(entry.day);
+  const block = `${entry.time} ${entry.text}\n`;
+  const message = `memory: ${entry.day} ${entry.time}\n\nMemory-ID: ${entry.id}`;
   for (let attempt=0; attempt<4; attempt++) {
     let file = {text:'', sha:undefined};
     try { file = await readFile(c, path); } catch (error) { if (error.status !== 404) throw error; }
-    if (file.text.includes(marker)) return; // A timed-out PUT may already have succeeded.
-    const block = `${marker}\n1. 时间：${entry.time}\n2. 提交内容：\n${entry.text.split('\n').map(line => '   '+line).join('\n')}\n`;
-    const text = file.text + (file.text ? (file.text.endsWith('\n') ? '\n' : '\n\n') : '') + block;
+    if (file.text.includes(`<!-- memory:${entry.id} -->`)) return;
+    // A timed-out PUT may have succeeded. Use its commit message to distinguish identical entries.
+    if (`\n${file.text}`.includes(`\n${block}`)) {
+      const query = new URLSearchParams({sha:c.branch, path, per_page:'100'});
+      for (let page = 1; ; page++) {
+        query.set('page', String(page));
+        const commits = await api(c, `/commits?${query}`);
+        if (commits.some(item => item.commit.message === message)) return;
+        if (commits.length < 100) break;
+      }
+    }
+    let separator = '';
+    if (file.text && !file.text.endsWith('\n\n')) {
+      separator = file.text.endsWith('\n') ? '\n' : '\n\n';
+    }
+    const text = file.text + separator + block;
     try {
-      await api(c, `/contents/${path}`, {method:'PUT', headers:{'Content-Type':'application/json'}, body:JSON.stringify({message:`memory: ${entry.day} ${entry.time}`, content:encode(text), branch:c.branch, ...(file.sha ? {sha:file.sha} : {})})});
+      await api(c, `/contents/${path}`, {method:'PUT', headers:{'Content-Type':'application/json'}, body:JSON.stringify({message, content:encode(text), branch:c.branch, ...(file.sha ? {sha:file.sha} : {})})});
       return;
     } catch (error) { if (![409,422].includes(error.status) || attempt===3) throw error; }
   }
